@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/InputActions/DefaultInputActions.cs.meta
-guid: 1a35d68fc3d44e34bb5c08ae6a130d14
-========
-guid: 8d14bfa1ae32a9742bfc51363fd2276b
->>>>>>>> main:Assets/Input Actions.cs.meta
+guid: 7e2c44791cc83ed4db74cce092391845
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
