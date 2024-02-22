@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using TMPro;
 
 public class PlayerMovement : MonoBehaviour
@@ -48,12 +49,25 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public bool dashing;
+    //Input Actions
+    private DefaultInputActions playerInput;
+    private InputAction move;
+    private InputAction look;
+
+
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
 
+    }
+    private void OnEnable() {
+        playerInput = new DefaultInputActions();
+        playerInput.Player.Enable();
+    }
+    private void OnDisable() {
+        playerInput.Player.Disable();
     }
 
     private void Update()
