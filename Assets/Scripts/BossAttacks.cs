@@ -6,6 +6,7 @@ public class BossAttacks : MonoBehaviour
 {
     [SerializeField] private GameObject waveAttack;
     [SerializeField] private GameObject bubbleAttack;
+    private GameObject spinAttack;
 
     private Vector3 startPos;
     private Quaternion startRot;
@@ -24,6 +25,7 @@ public class BossAttacks : MonoBehaviour
     void Start()
     {
         spinTime = 2f;
+        spinAttack = transform.GetChild(0).gameObject;
 
         jumpHeight += transform.position.y;
 
@@ -106,14 +108,17 @@ public class BossAttacks : MonoBehaviour
         gameObject.GetComponent<MeshRenderer>().material.color = bossCol;
 
         spinning = true;
+        spinAttack.SetActive(true);
+
         float t = 0;
         Quaternion targetRotA = transform.rotation * Quaternion.Euler(0, 170, 0);
         Quaternion targetRotB = transform.rotation * Quaternion.Euler(0, 190, 0);
 
 
+
         while (t < spinTime)
         {
-            Debug.Log("yup");
+            //Debug.Log("yup");
             transform.rotation = Quaternion.Slerp(startRot, targetRotA, (t / spinTime) * 2);
             t += Time.deltaTime;
             yield return null;
@@ -123,13 +128,14 @@ public class BossAttacks : MonoBehaviour
         t = 0;
         while (t < spinTime)
         {
-            Debug.Log("YEAH");
+            //Debug.Log("YEAH");
             transform.rotation = Quaternion.Slerp(targetRotB, startRot, (t / spinTime) * 2);
             t += Time.deltaTime;
             yield return null;
         }
         transform.rotation = startRot;
         spinning = false;
+        spinAttack.SetActive(false);
     }
 
     IEnumerator Charge()
