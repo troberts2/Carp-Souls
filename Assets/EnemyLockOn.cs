@@ -54,18 +54,19 @@ public class EnemyLockOn : MonoBehaviour
             if (currentTarget = ScanNearBy()) FoundTarget(); else ResetTarget();
         }
 
+
+
+    }
+    private void FixedUpdate() {
         if (enemyLocked) {
             if(!TargetOnRange()) ResetTarget();
             LookAtTarget();
         }
-
     }
 
 
     void FoundTarget(){
         lockOnCanvas.gameObject.SetActive(true);
-        anim.SetLayerWeight(1, 1);
-        Debug.Log("should target follow");
         cinemachineAnimator.Play("TargetFollow");
         enemyLocked = true;
     }
@@ -75,8 +76,6 @@ public class EnemyLockOn : MonoBehaviour
         lockOnCanvas.gameObject.SetActive(false);
         currentTarget = null;
         enemyLocked = false;
-        anim.SetLayerWeight(1, 0);
-        Debug.Log("no more");
         cinemachineAnimator.Play("FreeLook");
     }
 
@@ -129,7 +128,6 @@ public class EnemyLockOn : MonoBehaviour
 
     private void LookAtTarget()
     {
-        Debug.Log(currentTarget.gameObject.name);
         if(currentTarget == null) {
             ResetTarget();
             return;
@@ -142,7 +140,7 @@ public class EnemyLockOn : MonoBehaviour
         Vector3 dir = currentTarget.position - transform.position;
         dir.y = 0;
         Quaternion rot = Quaternion.LookRotation(dir);
-        transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * lookAtSmoothing);
+        //transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * lookAtSmoothing);
     }
 
     private void OnDrawGizmos()

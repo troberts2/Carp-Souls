@@ -24,7 +24,7 @@ public class CameraFollow : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         cam = Camera.main.transform;
     }
-    void Update()
+    void FixedUpdate()
     {
         
         Vector3 target_P= target.position + offset;
