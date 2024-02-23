@@ -50,9 +50,8 @@ public class PlayerMovement : MonoBehaviour
 
     public bool dashing;
     //Input Actions
-    private DefaultInputActions playerInput;
+    public DefaultInputActions playerInput;
     private InputAction move;
-    private InputAction look;
 
 
 
@@ -62,12 +61,8 @@ public class PlayerMovement : MonoBehaviour
         rb.freezeRotation = true;
 
     }
-    private void OnEnable() {
+    private void Awake() {
         playerInput = new DefaultInputActions();
-        playerInput.Player.Enable();
-    }
-    private void OnDisable() {
-        playerInput.Player.Disable();
     }
 
     private void Update()
@@ -75,7 +70,6 @@ public class PlayerMovement : MonoBehaviour
         // ground check
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
 
-        MyInput();
         SpeedControl();
         StateHandler();
 
@@ -91,12 +85,6 @@ public class PlayerMovement : MonoBehaviour
         MovePlayer();
     }
 
-    private void MyInput()
-    {
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
-
-    }
 
     private float desiredMoveSpeed;
     private float lastDesiredMoveSpeed;
@@ -179,6 +167,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (state == MovementState.dashing) return;
 
+        verticalInput = playerInput.Player.Move.ReadValue<Vector2>().y;
+        horizontalInput = playerInput.Player.Move.ReadValue<Vector2>().x;
         // calculate movement direction
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
@@ -191,6 +181,7 @@ public class PlayerMovement : MonoBehaviour
             rb.MovePosition(transform.position + moveDirection.normalized * moveSpeed * Time.deltaTime * airMultiplier);
 
     }
+
 
     private void SpeedControl()
     {
@@ -207,6 +198,19 @@ public class PlayerMovement : MonoBehaviour
         // limit y vel
         if (maxYSpeed != 0 && rb.velocity.y > maxYSpeed)
             rb.velocity = new Vector3(rb.velocity.x, maxYSpeed, rb.velocity.z);
+    }
+    private void OnEnable() {
+        
+        move = playerInput.Player.Move;
+
+        move.Enable();
+        
+    }
+    private void OnDisable() {
+
+
+        move.Disable();
+
     }
 
 

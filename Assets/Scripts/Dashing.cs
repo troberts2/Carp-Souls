@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Dashing : MonoBehaviour
 {
@@ -32,17 +33,31 @@ public class Dashing : MonoBehaviour
 
     [Header("Input")]
     public KeyCode dashKey = KeyCode.E;
+    private DefaultInputActions playerInput;
+    private InputAction dash;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         pm = GetComponent<PlayerMovement>();
     }
+    private void Awake() {
+        playerInput = new DefaultInputActions();
+        dash = playerInput.Player.Dash;
+    }
+    private void OnEnable() {
+
+        dash.Enable();
+    }
+    private void OnDisable() {
+        dash.Disable();
+    }
 
     private void Update()
     {
-        if (Input.GetKeyDown(dashKey))
+        if(dash.IsPressed()){
             Dash();
+        }
 
         if (dashCdTimer > 0)
             dashCdTimer -= Time.deltaTime;

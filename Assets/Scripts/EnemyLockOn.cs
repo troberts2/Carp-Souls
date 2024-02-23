@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class EnemyLockOn : MonoBehaviour
 {
@@ -29,6 +30,8 @@ public class EnemyLockOn : MonoBehaviour
     [SerializeField] CameraFollow camFollow;
     [SerializeField] Transform lockOnCanvas;
     PlayerMovement defMovement;
+    private DefaultInputActions playerInput;
+    private InputAction lockOn;
 
     void Start()
     {
@@ -37,25 +40,33 @@ public class EnemyLockOn : MonoBehaviour
         cam = Camera.main.transform;
         lockOnCanvas.gameObject.SetActive(false);
     }
+    private void Awake() {
+        playerInput = new DefaultInputActions();
+        lockOn = playerInput.Player.LockToEnemy;
+    }
+    void OnEnable(){
+        lockOn.Enable();
+        lockOn.performed += lockOnStuff;
+    }
+    private void OnDisable() {
+        lockOn.performed -= lockOnStuff;
+    }
 
     void Update()
     {
         camFollow.lockedTarget = enemyLocked;
         //defMovement.lockMovement = enemyLocked;
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+
+    }
+    private void lockOnStuff(InputAction.CallbackContext context){
+        if (currentTarget)
         {
-            if (currentTarget)
-            {
-                //If there is already a target, Reset.
-                ResetTarget();
-                return;
-            }
-            
-            if (currentTarget = ScanNearBy()) FoundTarget(); else ResetTarget();
+            //If there is already a target, Reset.
+            ResetTarget();
+            return;
         }
-
-
-
+        
+        if (currentTarget = ScanNearBy()) FoundTarget(); else ResetTarget();
     }
     private void FixedUpdate() {
         if (enemyLocked) {

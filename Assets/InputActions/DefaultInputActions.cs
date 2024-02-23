@@ -38,7 +38,7 @@ public partial class @DefaultInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""Look"",
-                    ""type"": ""Value"",
+                    ""type"": ""PassThrough"",
                     ""id"": ""8328354d-82c2-4126-b159-35c3d30004d7"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
@@ -58,6 +58,15 @@ public partial class @DefaultInputActions: IInputActionCollection2, IDisposable
                     ""name"": ""Dash"",
                     ""type"": ""Button"",
                     ""id"": ""96afd8f2-55f9-4190-9fc1-9fa9366b2c74"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LockToEnemy"",
+                    ""type"": ""Button"",
+                    ""id"": ""09766e7a-6db6-4a00-9d92-58129314081b"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -315,6 +324,28 @@ public partial class @DefaultInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse;Gamepad"",
                     ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9ef627dd-5850-4855-aa11-b929b4082c2c"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse;Gamepad"",
+                    ""action"": ""LockToEnemy"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7b8fba85-8045-4f39-b92b-cef553b82d2a"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse;Gamepad"",
+                    ""action"": ""LockToEnemy"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -906,6 +937,7 @@ public partial class @DefaultInputActions: IInputActionCollection2, IDisposable
         m_Player_Look = m_Player.FindAction("Look", throwIfNotFound: true);
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
+        m_Player_LockToEnemy = m_Player.FindAction("LockToEnemy", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -983,6 +1015,7 @@ public partial class @DefaultInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Look;
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_Dash;
+    private readonly InputAction m_Player_LockToEnemy;
     public struct PlayerActions
     {
         private @DefaultInputActions m_Wrapper;
@@ -991,6 +1024,7 @@ public partial class @DefaultInputActions: IInputActionCollection2, IDisposable
         public InputAction @Look => m_Wrapper.m_Player_Look;
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
+        public InputAction @LockToEnemy => m_Wrapper.m_Player_LockToEnemy;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1012,6 +1046,9 @@ public partial class @DefaultInputActions: IInputActionCollection2, IDisposable
             @Dash.started += instance.OnDash;
             @Dash.performed += instance.OnDash;
             @Dash.canceled += instance.OnDash;
+            @LockToEnemy.started += instance.OnLockToEnemy;
+            @LockToEnemy.performed += instance.OnLockToEnemy;
+            @LockToEnemy.canceled += instance.OnLockToEnemy;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1028,6 +1065,9 @@ public partial class @DefaultInputActions: IInputActionCollection2, IDisposable
             @Dash.started -= instance.OnDash;
             @Dash.performed -= instance.OnDash;
             @Dash.canceled -= instance.OnDash;
+            @LockToEnemy.started -= instance.OnLockToEnemy;
+            @LockToEnemy.performed -= instance.OnLockToEnemy;
+            @LockToEnemy.canceled -= instance.OnLockToEnemy;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1214,6 +1254,7 @@ public partial class @DefaultInputActions: IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
+        void OnLockToEnemy(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
