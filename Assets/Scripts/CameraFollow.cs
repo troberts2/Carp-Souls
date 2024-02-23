@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CameraFollow : MonoBehaviour
 {
@@ -18,11 +19,27 @@ public class CameraFollow : MonoBehaviour
     Transform cam;
 
     public bool lockedTarget;
+    private DefaultInputActions playerInput;
+    private InputAction look;
+    private float horizontal;
+    private float vertical;
 
     void Start(){
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         cam = Camera.main.transform;
+
+    }
+    private void Awake() {
+        playerInput = new DefaultInputActions();
+    }
+    private void OnEnable() {
+        look = playerInput.Player.Look;
+
+        look.Enable();
+    }
+    private void OnDisable(){
+        look.Disable();
     }
     void FixedUpdate()
     {
@@ -46,7 +63,9 @@ public class CameraFollow : MonoBehaviour
     }
 
     void CameraTargetRotation(){
-        Vector2 mouseAxis = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+        horizontal = look.ReadValue<Vector2>().x;
+        vertical = look.ReadValue<Vector2>().y;
+        Vector2 mouseAxis = new Vector2(horizontal, vertical);
         rotX += (mouseAxis.x * senstivity) * Time.deltaTime;
         rotY -= (mouseAxis.y * senstivity) * Time.deltaTime;
 

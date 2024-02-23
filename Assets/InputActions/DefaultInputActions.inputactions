@@ -1,5 +1,5 @@
 {
-    "name": "Default",
+    "name": "DefaultInputActions",
     "maps": [
         {
             "name": "Player",
@@ -16,7 +16,7 @@
                 },
                 {
                     "name": "Look",
-                    "type": "Value",
+                    "type": "PassThrough",
                     "id": "8328354d-82c2-4126-b159-35c3d30004d7",
                     "expectedControlType": "Vector2",
                     "processors": "",
@@ -36,6 +36,15 @@
                     "name": "Dash",
                     "type": "Button",
                     "id": "96afd8f2-55f9-4190-9fc1-9fa9366b2c74",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "LockToEnemy",
+                    "type": "Button",
+                    "id": "09766e7a-6db6-4a00-9d92-58129314081b",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -293,6 +302,28 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse;Gamepad",
                     "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9ef627dd-5850-4855-aa11-b929b4082c2c",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse;Gamepad",
+                    "action": "LockToEnemy",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7b8fba85-8045-4f39-b92b-cef553b82d2a",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse;Gamepad",
+                    "action": "LockToEnemy",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
