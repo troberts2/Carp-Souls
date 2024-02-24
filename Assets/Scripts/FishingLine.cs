@@ -28,7 +28,7 @@ public class FisingLine : MonoBehaviour {
 
     void DrawRope() {
         //If not grappling, don't draw rope
-        if (!attack.freezePlayer) {
+        if (!attack.freezePlayer && !attack.retract) {
             currentGrapplePosition = attack.rodTip.position;
             spring.Reset();
             if (lr.positionCount > 0)

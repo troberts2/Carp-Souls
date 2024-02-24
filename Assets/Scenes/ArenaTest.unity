@@ -672,11 +672,12 @@ MonoBehaviour:
   attackPoint: {x: 0, y: 0, z: 0}
   attacking: 0
   freezePlayer: 0
-  attackDelayTime: 0.5
+  retract: 0
+  attackDelayTime: 0.1
   attackable:
     serializedVersion: 2
     m_Bits: 256
-  attackCd: 1
+  attackCd: 0.75
   bobberRb: {fileID: 1847653616}
   bobberResetPos: {fileID: 2023504967}
 --- !u!120 &172011937
@@ -1538,7 +1539,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 464471706}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.13870123, y: -0.000000014757131, z: 0.0000000020668085, w: 0.9903343}
+  m_LocalRotation: {x: 0.13870123, y: 0.0000000147571315, z: -0.0000000020668085,
+    w: 0.9903343}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2048,7 +2050,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 848514922}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.13870123, y: -0.000000016531704, z: 0.0000000023153457, w: 0.9903343}
+  m_LocalRotation: {x: 0.13870123, y: 0.000000014757135, z: -0.0000000020668092, w: 0.9903343}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2233,7 +2235,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1063818958}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.09252107, y: 0.000000009660208, z: -8.9762253e-10, w: 0.9957108}
+  m_LocalRotation: {x: 0.09252107, y: 0.00000002402403, z: -0.000000002232302, w: 0.9957108}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2561,7 +2563,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1234374056}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.1387012, y: 0.000000014757133, z: -0.0000000020668092, w: 0.99033433}
+  m_LocalRotation: {x: 0.1387012, y: -0.000000014757133, z: 0.0000000020668092, w: 0.99033433}
   m_LocalPosition: {x: 0, y: 2, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3350,7 +3352,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!1 &1997026029
 GameObject:
@@ -3588,8 +3590,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2077113272}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.59075403, y: -0.07436121, z: 0.09681383, w: 0.7975634}
-  m_LocalPosition: {x: -0.12918894, y: 3.1832523, z: 1.2443807}
+  m_LocalRotation: {x: 0.59075356, y: -0.074366115, z: 0.096820265, w: 0.79756236}
+  m_LocalPosition: {x: -0.12918764, y: 3.1832542, z: 1.244385}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
