@@ -110,7 +110,7 @@ public class FishingRodAttack : MonoBehaviour
     void StopAttack(){
         Invoke(nameof(UnfreezePlayer), .2f);
         attacking = false;
-        Invoke(nameof(Retract), .05f);
+        Invoke(nameof(Retract), .1f);
         elapsedTime = 0;
     }
     float elapsedRetractTime;
