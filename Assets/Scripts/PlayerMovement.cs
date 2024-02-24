@@ -35,16 +35,19 @@ public class PlayerMovement : MonoBehaviour
 
     float horizontalInput;
     float verticalInput;
+    internal bool lockRotation;
 
     Vector3 moveDirection;
 
     Rigidbody rb;
+    FishingRodAttack attack;
 
     public MovementState state;
     public enum MovementState
     {
         walking,
         dashing,
+        attacking,
         air
     }
 
@@ -57,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        attack = GetComponent<FishingRodAttack>();
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
 
@@ -99,6 +103,12 @@ public class PlayerMovement : MonoBehaviour
             desiredMoveSpeed = dashSpeed;
             speedChangeFactor = dashSpeedChangeFactor;
             playerMaterial.color = Color.green;
+        }
+
+        //Mode = Attack
+        else if(attack.freezePlayer){
+            state = MovementState.attacking;
+            desiredMoveSpeed = 0;
         }
 
 

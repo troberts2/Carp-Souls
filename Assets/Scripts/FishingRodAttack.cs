@@ -40,13 +40,15 @@ public class FishingRodAttack : MonoBehaviour
     private void StartAttack(){
         if(attackCdTimer > 0) return;
 
+        freezePlayer = true;
+
+        attackCdTimer = attackCd;
+
 
         RaycastHit hit;
         
         if(Physics.Raycast(cam.position, cam.forward, out hit, maxAttackDistance, attackable)){
             attackPoint = hit.point;
-            freezePlayer = true;
-            Debug.DrawRay(cam.position, cam.forward, Color.red, 5f);
             //cast back
             Invoke(nameof(ArcToCam), .025f);
 
@@ -70,6 +72,9 @@ public class FishingRodAttack : MonoBehaviour
             case 1:
                 forceDir = (cam.position - bobber.position + Vector3.up * 15 + Vector3.right * 15).normalized;
                 break;
+            case 2:
+                forceDir = (cam.position - bobber.position + Vector3.up * 15).normalized;
+                break;
             default:
                 forceDir = (cam.position - bobber.position + Vector3.up * 15).normalized;
                 break;
@@ -86,7 +91,6 @@ public class FishingRodAttack : MonoBehaviour
     float elapsedTime;
 
     void Attack(){
-        attackCdTimer = attackCd;
 
         elapsedTime += Time.deltaTime;
         float percentComplete = elapsedTime / .25f;

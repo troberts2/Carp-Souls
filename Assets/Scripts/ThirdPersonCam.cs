@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -42,6 +43,11 @@ public class ThirdPersonCam : MonoBehaviour
         float horizontalInput = move.ReadValue<Vector2>().x;
         float verticalInput = move.ReadValue<Vector2>().y;
         Vector3 inputDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
+
+        if(player.GetComponent<EnemyLockOn>().enemyLocked){
+            playerObj.forward = Vector3.Slerp(playerObj.forward, orientation.forward, Time.deltaTime * rotationSpeed);
+            return;
+        }
 
         if(inputDir != Vector3.zero){
             playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
