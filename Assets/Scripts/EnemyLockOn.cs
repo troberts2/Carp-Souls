@@ -23,12 +23,13 @@ public class EnemyLockOn : MonoBehaviour
 
     
     Transform cam;
-    bool enemyLocked;
+    public bool enemyLocked;
     float currentYOffset;
     Vector3 pos;
 
     [SerializeField] CameraFollow camFollow;
     [SerializeField] Transform lockOnCanvas;
+    [SerializeField] Transform playerObj;
     PlayerMovement defMovement;
     private DefaultInputActions playerInput;
     private InputAction lockOn;
@@ -55,7 +56,7 @@ public class EnemyLockOn : MonoBehaviour
     void Update()
     {
         camFollow.lockedTarget = enemyLocked;
-        //defMovement.lockMovement = enemyLocked;
+        defMovement.lockRotation = enemyLocked;
 
     }
     private void lockOnStuff(InputAction.CallbackContext context){
@@ -151,7 +152,7 @@ public class EnemyLockOn : MonoBehaviour
         Vector3 dir = currentTarget.position - transform.position;
         dir.y = 0;
         Quaternion rot = Quaternion.LookRotation(dir);
-        //transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * lookAtSmoothing);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * lookAtSmoothing);
     }
 
     private void OnDrawGizmos()

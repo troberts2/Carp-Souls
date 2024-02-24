@@ -13,6 +13,7 @@ public class FishingRodAttack : MonoBehaviour
     LineRenderer lr;
     public bool attacking = false;
     public bool freezePlayer = false;
+    public bool retract = false;
     private int comboNum = 0;
     private float attackCdTimer;
     public float attackDelayTime;
@@ -35,18 +36,27 @@ public class FishingRodAttack : MonoBehaviour
         if(attacking){      
             Attack();
         } 
+        if(retract){
+            RetractLine();
+        }
+        if(bobber.position == bobberResetPos.position){
+            retract = false;
+            elapsedRetractTime = 0;
+        }
     }
 
     private void StartAttack(){
         if(attackCdTimer > 0) return;
+
+        freezePlayer = true;
+
+        attackCdTimer = attackCd;
 
 
         RaycastHit hit;
         
         if(Physics.Raycast(cam.position, cam.forward, out hit, maxAttackDistance, attackable)){
             attackPoint = hit.point;
-            freezePlayer = true;
-            Debug.DrawRay(cam.position, cam.forward, Color.red, 5f);
             //cast back
             Invoke(nameof(ArcToCam), .025f);
 
@@ -65,10 +75,13 @@ public class FishingRodAttack : MonoBehaviour
         Vector3 forceDir = (cam.position - bobber.position + Vector3.up * 15).normalized;
         switch(comboNum){
             case 0:
-                forceDir = (cam.position - bobber.position + Vector3.up * 15 + Vector3.left * 15).normalized;
+                forceDir = (cam.position - bobber.position + Vector3.up * 20 + Vector3.left * 20f).normalized;
                 break;
             case 1:
-                forceDir = (cam.position - bobber.position + Vector3.up * 15 + Vector3.right * 15).normalized;
+                forceDir = (cam.position - bobber.position + Vector3.up * 20 + Vector3.right * 20f).normalized;
+                break;
+            case 2:
+                forceDir = (cam.position - bobber.position + Vector3.up * 15).normalized;
                 break;
             default:
                 forceDir = (cam.position - bobber.position + Vector3.up * 15).normalized;
@@ -86,20 +99,26 @@ public class FishingRodAttack : MonoBehaviour
     float elapsedTime;
 
     void Attack(){
-        attackCdTimer = attackCd;
 
         elapsedTime += Time.deltaTime;
-        float percentComplete = elapsedTime / .25f;
+        float percentComplete = elapsedTime / attackDelayTime;
 
         bobber.position = Vector3.Lerp(bobberStartPos, attackPoint, percentComplete);
 
         //Invoke(nameof(StopAttack), 2f);
     }
     void StopAttack(){
-        freezePlayer = false;
+        Invoke(nameof(UnfreezePlayer), .2f);
         attacking = false;
-        bobber.position = bobberResetPos.position;
+        Invoke(nameof(Retract), .05f);
         elapsedTime = 0;
+    }
+    float elapsedRetractTime;
+    void RetractLine(){
+        elapsedRetractTime += Time.deltaTime;
+        float percentComplete = elapsedRetractTime / .1f;
+
+        bobber.position = Vector3.Lerp(bobber.position, bobberResetPos.position, percentComplete);
     }
     private IEnumerator AttackAfter(){
         yield return new WaitForSeconds(.5f);
@@ -107,6 +126,12 @@ public class FishingRodAttack : MonoBehaviour
         bobberStartPos = bobber.position;
         bobberRb.isKinematic = true;
         Invoke(nameof(StopAttack), attackDelayTime);
+    }
+    private void UnfreezePlayer(){
+        freezePlayer = false;
+    }
+    private void Retract(){
+        retract = true;
     }
 
     private IEnumerator ComboNum(){
