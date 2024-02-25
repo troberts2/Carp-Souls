@@ -13,7 +13,7 @@ public class SimpleLockOn : MonoBehaviour
     private IEnumerator LookAtTarget(){
         while(this.gameObject.activeInHierarchy){
             Vector3 _dir = target.position - transform.position;
-            //_dir.y = 0;
+            _dir.y = 0;
             transform.rotation = Quaternion.LookRotation(_dir);
             yield return null;
         }
