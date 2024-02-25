@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations.Rigging;
+using UnityEngine.InputSystem;
 
 public class FishingRodAttack : MonoBehaviour
 {
@@ -22,13 +23,26 @@ public class FishingRodAttack : MonoBehaviour
     private Transform cam;
     public Rigidbody bobberRb;
     public Transform bobberResetPos;
+    private DefaultInputActions playerInput;
+    private InputAction attackInput;
 
     private void Start(){
         cam = Camera.main.transform;
     }
+        private void Awake() {
+        playerInput = new DefaultInputActions();
+        attackInput = playerInput.Player.Fire;
+    }
+    private void OnEnable() {
+
+        attackInput.Enable();
+    }
+    private void OnDisable() {
+        attackInput.Disable();
+    }
     Vector3 bobberStartPos;
     private void Update(){
-        if(Input.GetKeyDown(KeyCode.Mouse0)){
+        if(attackInput.IsPressed() && !retract && !attacking && !freezePlayer){
             StartAttack();
         }
         if (attackCdTimer > 0) attackCdTimer -= Time.deltaTime;
@@ -103,7 +117,7 @@ public class FishingRodAttack : MonoBehaviour
         elapsedTime += Time.deltaTime;
         float percentComplete = elapsedTime / attackDelayTime;
 
-        bobber.position = Vector3.Lerp(bobberStartPos, attackPoint, percentComplete);
+        bobber.position = Vector3.Lerp(bobber.position, attackPoint, percentComplete);
 
         //Invoke(nameof(StopAttack), 2f);
     }

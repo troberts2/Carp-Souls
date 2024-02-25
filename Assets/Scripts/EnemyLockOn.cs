@@ -119,8 +119,8 @@ public class EnemyLockOn : MonoBehaviour
         float half_h = (h / 2) / 2;
         currentYOffset = h - half_h;
         if(zeroVert_Look && currentYOffset > 1.6f && currentYOffset < 1.6f * 3) currentYOffset = 1.6f;
-        Vector3 tarPos = closestTarget.position + new Vector3(0, currentYOffset, 0);
-        if(Blocked(tarPos)) return null;
+        Vector3 tarPos = closestTarget.position;
+        //if(Blocked(tarPos)) return null;
         return closestTarget;
     }
 
@@ -145,7 +145,7 @@ public class EnemyLockOn : MonoBehaviour
             return;
         }
         pos = currentTarget.position + new Vector3(0, currentYOffset, 0);
-        lockOnCanvas.position = pos;
+        lockOnCanvas.position = pos - new Vector3(0, currentYOffset, 0);
         lockOnCanvas.localScale = Vector3.one * ((cam.position - pos).magnitude * crossHair_Scale);
 
         enemyTarget_Locator.position = pos;
