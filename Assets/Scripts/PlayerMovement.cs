@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -52,6 +53,9 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public bool dashing;
+    public float maxHp = 3f;
+    private float hp;
+    public Image playerHpBar;
     //Input Actions
     public DefaultInputActions playerInput;
     private InputAction move;
@@ -63,6 +67,7 @@ public class PlayerMovement : MonoBehaviour
         attack = GetComponent<FishingRodAttack>();
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+        hp = maxHp;
 
     }
     private void Awake() {
@@ -208,6 +213,22 @@ public class PlayerMovement : MonoBehaviour
         // limit y vel
         if (maxYSpeed != 0 && rb.velocity.y > maxYSpeed)
             rb.velocity = new Vector3(rb.velocity.x, maxYSpeed, rb.velocity.z);
+    }
+    void OnTriggerEnter(Collider collider){
+        if(collider.CompareTag("EnemyAttack") || collider.CompareTag("Enemy")){
+            StartCoroutine(TakeDamage());
+        }
+    }
+    IEnumerator TakeDamage(){
+        //change to boss damage later
+        hp--;
+        playerHpBar.fillAmount = hp/maxHp;
+        //change later just to show its taking damage
+        transform.GetChild(1).GetComponent<MeshRenderer>().material.color = Color.magenta;
+        yield return new WaitForSeconds(0.1f);
+        transform.GetChild(1).GetComponent<MeshRenderer>().material.color = Color.yellow;
+
+        yield return null;
     }
     private void OnEnable() {
         
