@@ -6,6 +6,7 @@ public class Wave : MonoBehaviour
 {
     [SerializeField] private float maxSize;
     [SerializeField] private float rate;
+    [SerializeField] private float knockback;
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +25,20 @@ public class Wave : MonoBehaviour
         {
             Destroy(transform.parent.gameObject);
             Destroy(gameObject);
+        }
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            Vector3 direction = other.ClosestPointOnBounds(-transform.position);
+            direction = -direction.normalized;
+
+            Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
+            rb.AddForce(direction * -knockback);
+
         }
     }
 }
