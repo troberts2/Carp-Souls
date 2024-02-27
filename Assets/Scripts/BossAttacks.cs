@@ -78,15 +78,15 @@ public class BossAttacks : MonoBehaviour
         //    transform.position = startPos;
         //}
 
-        if (!spinning || !jumping)
-        {
-            //better rotation, but doesn't work right
-            //target = Quaternion.LookRotation(player.transform.position - transform.position);
-            //transform.localRotation = Quaternion.RotateTowards(transform.rotation, target, lookSpeed * Time.deltaTime);
+        //if (!spinning || !jumping)
+        //{
+        //    //better rotation, but doesn't work right
+        //    //target = Quaternion.LookRotation(player.transform.position - transform.position);
+        //    //transform.localRotation = Quaternion.RotateTowards(transform.rotation, target, lookSpeed * Time.deltaTime);
 
-            transform.LookAt(player.transform);
-            transform.Rotate(0, 90, 0);
-        }
+        //    transform.LookAt(player.transform);
+        //    transform.Rotate(0, 90, 0);
+        //}
 
     }
 
