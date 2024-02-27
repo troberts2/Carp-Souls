@@ -13,14 +13,11 @@ public class BossAttacks : MonoBehaviour
     private Vector3 startPos;
     private Vector3 rotateDirection;
 
-    private Quaternion target;
-
     [SerializeField] private float jumpHeight;
     [SerializeField] private float spinSpeed;
     [SerializeField] private float spinTime;
     [SerializeField] private float attackTimer;
     [SerializeField] private float spinTriggerDistance;
-    [SerializeField] private float lookSpeed;
 
     private bool charging;
     private bool jumping;
@@ -62,39 +59,18 @@ public class BossAttacks : MonoBehaviour
 
             //Debug.Log("goin up");
         }
-        //if (falling)
-        //{
-        //    transform.position = Vector3.Lerp(transform.position, startPos, 0.1f);
-        //}
 
         if (transform.position.y >= jumpHeight && jumping)
         {
             jumping = false;
             StartCoroutine(StartWave());
         }
-        //if (transform.position.y <= startPos.y)
-        //{
-        //    falling = false;
-        //    transform.position = startPos;
-        //}
-
-        if (!spinning || !jumping)
-        {
-            //better rotation, but doesn't work right
-            //target = Quaternion.LookRotation(player.transform.position - transform.position);
-            //transform.localRotation = Quaternion.RotateTowards(transform.rotation, target, lookSpeed * Time.deltaTime);
-
-            transform.LookAt(player.transform);
-            transform.Rotate(0, 90, 0);
-        }
-
     }
 
     IEnumerator StartWave()
     {   
         yield return new WaitForSeconds(1);
-
-        //falling = true;
+        
         transform.position = startPos;
         Instantiate(waveAttack);
     }
@@ -107,9 +83,18 @@ public class BossAttacks : MonoBehaviour
         charging = false;
         gameObject.GetComponent<MeshRenderer>().material.color = bossCol;
 
-        Instantiate(hydroAttack);
-        hydroAttack.transform.position = transform.GetChild(1).position; //temporary use of Mouth child
-        
+        float i = 0;
+
+        while (i < 3)
+        {
+            i++;
+
+            Instantiate(hydroAttack);
+            hydroAttack.transform.position = transform.GetChild(1).position; //temporary use of Mouth child
+            transform.GetChild(1).DetachChildren();
+
+            yield return new WaitForSeconds(1);
+        }
     }
 
     IEnumerator Beam()
@@ -148,7 +133,6 @@ public class BossAttacks : MonoBehaviour
 
         spinning = false;
         spinAttack.SetActive(false);
-
     }
 
     IEnumerator Charge()
