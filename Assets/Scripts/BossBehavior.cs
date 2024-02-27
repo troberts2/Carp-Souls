@@ -37,7 +37,7 @@ public class BossBehavior : MonoBehaviour
 
     void FollowPlayerOrientation(){
         Vector3 lookDir = player.position - transform.position;
-        lookDir = new Vector3(lookDir.x, 90, lookDir.z);
+        lookDir = new Vector3(lookDir.x, 0, lookDir.z);
         transform.forward = Vector3.Slerp(transform.forward, lookDir.normalized, Time.deltaTime * rotationSpeed);
     }
 
