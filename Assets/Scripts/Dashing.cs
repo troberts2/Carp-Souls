@@ -105,6 +105,7 @@ public class Dashing : MonoBehaviour
     private void ResetDash()
     {
         pm.dashing = false;
+        pm.iFrames = false;
         pm.maxYSpeed = 0;
 
         //cam.DoFov(85f);
