@@ -53,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public bool dashing;
+    bool iFrames;
     public float maxHp = 3f;
     private float hp;
     public Image playerHpBar;
@@ -101,6 +102,7 @@ public class PlayerMovement : MonoBehaviour
     private bool keepMomentum;
     private void StateHandler()
     {
+        playerHpBar.fillAmount = hp/maxHp;
         // Mode - Dashing
         if (dashing)
         {
@@ -108,6 +110,7 @@ public class PlayerMovement : MonoBehaviour
             desiredMoveSpeed = dashSpeed;
             speedChangeFactor = dashSpeedChangeFactor;
             playerMaterial.color = Color.green;
+            iFrames = true;
         }
 
         //Mode = Attack
@@ -132,6 +135,7 @@ public class PlayerMovement : MonoBehaviour
 
             desiredMoveSpeed = walkSpeed;
         }
+        if(!dashing) iFrames = false;
 
         bool desiredMoveSpeedHasChanged = desiredMoveSpeed != lastDesiredMoveSpeed;
         if (lastState == MovementState.dashing) keepMomentum = true;
@@ -180,7 +184,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
-        if (state == MovementState.dashing) return;
+        if (state == MovementState.dashing || state == MovementState.attacking) return;
 
         verticalInput = playerInput.Player.Move.ReadValue<Vector2>().y;
         horizontalInput = playerInput.Player.Move.ReadValue<Vector2>().x;
@@ -216,17 +220,20 @@ public class PlayerMovement : MonoBehaviour
     }
     void OnTriggerEnter(Collider collider){
         if(collider.CompareTag("EnemyAttack") || collider.CompareTag("Enemy")){
-            StartCoroutine(TakeDamage());
+            if(!iFrames) StartCoroutine(TakeDamage());
         }
     }
     IEnumerator TakeDamage(){
         //change to boss damage later
         hp--;
-        playerHpBar.fillAmount = hp/maxHp;
+        Debug.Log(hp);
+        iFrames = true;
         //change later just to show its taking damage
         transform.GetChild(1).GetComponent<MeshRenderer>().material.color = Color.magenta;
         yield return new WaitForSeconds(0.1f);
         transform.GetChild(1).GetComponent<MeshRenderer>().material.color = Color.yellow;
+        yield return new WaitForSeconds(1f);
+        iFrames = false;
 
         yield return null;
     }
