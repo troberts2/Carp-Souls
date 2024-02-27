@@ -6,59 +6,61 @@ public class BossAttacks : MonoBehaviour
 {
     [SerializeField] private GameObject waveAttack;
     [SerializeField] private GameObject bubbleAttack;
+    [SerializeField] private GameObject hydroAttack;
     private GameObject spinAttack;
+    private GameObject player;
 
     private Vector3 startPos;
-    private Quaternion startRot;
+    private Vector3 rotateDirection;
+
+    private Quaternion target;
 
     [SerializeField] private float jumpHeight;
+    [SerializeField] private float spinSpeed;
     [SerializeField] private float spinTime;
+    [SerializeField] private float attackTimer;
+    [SerializeField] private float spinTriggerDistance;
+    [SerializeField] private float lookSpeed;
 
     private bool charging;
     private bool jumping;
     private bool falling;
     private bool spinning;
 
+    private bool chooseFlag;
+    private int chooseInt;
+    private int repeatCheck;
+    private int repetitions;
+
     private Material bossMat;
     private Color bossCol;
 
     void Start()
     {
-        spinTime = 2f;
+        player = GameObject.FindGameObjectWithTag("Player");
+
         spinAttack = transform.GetChild(0).gameObject;
 
         jumpHeight += transform.position.y;
 
         startPos = transform.position;
-        startRot = transform.rotation;
 
         bossMat = GetComponent<MeshRenderer>().material;
         bossCol = bossMat.color;
+
+        StartCoroutine(ChooseAttack());
+        repetitions = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //1 is shockwave attack, 2 is bubble attack, 3 is spin attack
-        if (Input.GetKeyDown(KeyCode.Alpha1) && !jumping)
-        {
-            jumping = true;
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            StartCoroutine(Beam());
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            StartCoroutine(Spin());
-        }
-
 
         if (jumping)
         {
             transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, transform.position.y + jumpHeight), 0.01f);
 
-            Debug.Log("goin up");
+            //Debug.Log("goin up");
         }
         //if (falling)
         //{
@@ -76,6 +78,16 @@ public class BossAttacks : MonoBehaviour
         //    transform.position = startPos;
         //}
 
+        if (!spinning || !jumping)
+        {
+            //better rotation, but doesn't work right
+            //target = Quaternion.LookRotation(player.transform.position - transform.position);
+            //transform.localRotation = Quaternion.RotateTowards(transform.rotation, target, lookSpeed * Time.deltaTime);
+
+            transform.LookAt(player.transform);
+            transform.Rotate(0, 90, 0);
+        }
+
     }
 
     IEnumerator StartWave()
@@ -85,6 +97,19 @@ public class BossAttacks : MonoBehaviour
         //falling = true;
         transform.position = startPos;
         Instantiate(waveAttack);
+    }
+
+    IEnumerator Hydro()
+    {
+        charging = true;
+        StartCoroutine(Charge());
+        yield return new WaitForSeconds(2.2f);
+        charging = false;
+        gameObject.GetComponent<MeshRenderer>().material.color = bossCol;
+
+        Instantiate(hydroAttack);
+        hydroAttack.transform.position = transform.GetChild(1).position; //temporary use of Mouth child
+        
     }
 
     IEnumerator Beam()
@@ -111,31 +136,19 @@ public class BossAttacks : MonoBehaviour
         spinAttack.SetActive(true);
 
         float t = 0;
-        Quaternion targetRotA = transform.rotation * Quaternion.Euler(0, 170, 0);
-        Quaternion targetRotB = transform.rotation * Quaternion.Euler(0, 190, 0);
 
-
+        rotateDirection = new Vector3(0, 1, 0);
 
         while (t < spinTime)
         {
-            //Debug.Log("yup");
-            transform.rotation = Quaternion.Slerp(startRot, targetRotA, (t / spinTime) * 2);
-            t += Time.deltaTime;
+            t++;
+            transform.Rotate(spinSpeed * rotateDirection * Time.deltaTime);
             yield return null;
         }
-        transform.rotation = targetRotA;
 
-        t = 0;
-        while (t < spinTime)
-        {
-            //Debug.Log("YEAH");
-            transform.rotation = Quaternion.Slerp(targetRotB, startRot, (t / spinTime) * 2);
-            t += Time.deltaTime;
-            yield return null;
-        }
-        transform.rotation = startRot;
         spinning = false;
         spinAttack.SetActive(false);
+
     }
 
     IEnumerator Charge()
@@ -150,4 +163,60 @@ public class BossAttacks : MonoBehaviour
         }
     }
 
+    IEnumerator ChooseAttack()
+    {
+        if (Vector3.Distance(transform.position, player.transform.position) < spinTriggerDistance)
+        {
+            //Debug.Log(Vector3.Distance(transform.position, player.transform.position));
+            StartCoroutine(Spin());
+        }
+        else
+        {
+            if (repetitions < 2)
+            {
+                chooseInt = Random.Range(1, 3);
+
+                if (repeatCheck == chooseInt)
+                {
+                    repetitions++;
+                }
+                else
+                {
+                    repetitions = 0;
+                }
+
+                repeatCheck = chooseInt;
+
+                Debug.Log(repetitions);
+            }
+            else
+            {
+                Debug.Log("ending repeat");
+                repetitions = 0;
+                if (chooseInt == 1)
+                {
+                    chooseInt++;
+                }
+                else
+                {
+                    chooseInt--;
+                }
+
+            }
+
+            switch (chooseInt)
+            {
+                case 1:
+                    StartCoroutine(Hydro());
+                    break;
+                case 2:
+                    jumping = true;
+                    break;
+            }
+        }
+
+        yield return new WaitForSeconds(attackTimer);
+
+        StartCoroutine(ChooseAttack());
+    }
 }
