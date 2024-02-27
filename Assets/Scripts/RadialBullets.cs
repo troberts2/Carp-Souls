@@ -64,7 +64,12 @@ public class RadialBullets : MonoBehaviour
             angleStep = 360 / numberOfProjectilesPerArray;
             arrayAngleStep = 360/ numOfArrays;
         }else{
-            angleStep = individualArraySpread/(numberOfProjectilesPerArray -1);
+            if(numberOfProjectilesPerArray > 1){
+                angleStep = individualArraySpread/(numberOfProjectilesPerArray -1);
+            }else{
+                angleStep = individualArraySpread/numberOfProjectilesPerArray;
+            }
+            
             arrayAngleStep = totalArraySpread;
         }
 

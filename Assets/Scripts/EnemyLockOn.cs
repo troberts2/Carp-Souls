@@ -152,7 +152,7 @@ public class EnemyLockOn : MonoBehaviour
         Vector3 dir = currentTarget.position - transform.position;
         dir.y = 0;
         Quaternion rot = Quaternion.LookRotation(dir);
-        transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * lookAtSmoothing);
+        if(defMovement.state != PlayerMovement.MovementState.dashing && defMovement.state != PlayerMovement.MovementState.attacking)    transform.rotation = Quaternion.Lerp(transform.rotation, rot, Time.deltaTime * lookAtSmoothing);
     }
 
     private void OnDrawGizmos()
