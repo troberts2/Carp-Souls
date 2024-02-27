@@ -54,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public bool dashing;
-    bool iFrames;
+    public bool iFrames;
     public float maxHp = 3f;
     private float hp;
     public Image playerHpBar;
@@ -142,7 +142,6 @@ public class PlayerMovement : MonoBehaviour
 
             desiredMoveSpeed = walkSpeed;
         }
-        if(!dashing) iFrames = false;
 
         bool desiredMoveSpeedHasChanged = desiredMoveSpeed != lastDesiredMoveSpeed;
         if (lastState == MovementState.dashing) keepMomentum = true;
@@ -226,7 +225,7 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector3(rb.velocity.x, maxYSpeed, rb.velocity.z);
     }
     void OnTriggerEnter(Collider collider){
-        if((collider.CompareTag("EnemyAttack") || collider.CompareTag("Enemy")) && !damageBoost){
+        if((collider.CompareTag("EnemyAttack") || collider.CompareTag("Enemy"))){
             damageBoost = true; //hi again
             if(!iFrames) StartCoroutine(TakeDamage());
         }

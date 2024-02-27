@@ -8,7 +8,7 @@ public class BossAttacks : MonoBehaviour
     [SerializeField] private GameObject bubbleAttack;
     [SerializeField] private GameObject hydroAttack;
     private GameObject spinAttack;
-    private GameObject player;
+    public Transform player;
 
     private Vector3 startPos;
     private Vector3 rotateDirection;
@@ -34,7 +34,6 @@ public class BossAttacks : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
 
         spinAttack = transform.GetChild(0).gameObject;
 
