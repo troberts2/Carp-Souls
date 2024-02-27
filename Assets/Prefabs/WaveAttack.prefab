@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6599937648212623514}
   m_Layer: 0
   m_Name: WaveAttack
-  m_TagString: Untagged
+  m_TagString: EnemyAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,7 +27,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1514359635468050490}
   m_Father: {fileID: 0}
@@ -47,8 +47,8 @@ GameObject:
   - component: {fileID: 952021654032096689}
   - component: {fileID: 4226482897491463984}
   m_Layer: 0
-  m_Name: Pipe
-  m_TagString: Untagged
+  m_Name: Wave
+  m_TagString: EnemyAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2043,7 +2043,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c9e7682b7419d234b8b042454de35f48, type: 2}
+  - {fileID: 2100000, guid: b0e2b344eca7a1d4fa462efb7d0cf834, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2108,4 +2108,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxSize: 100
-  rate: 0.5
+  rate: 0.25
+  knockback: 500

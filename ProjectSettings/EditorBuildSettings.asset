@@ -12,11 +12,23 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
-    path: Assets/Scenes/ArenaTest.unity
-    guid: c62f1aee850bb4c498275933666c86a4
+    path: Assets/Scenes/Fishing Scene.unity
+    guid: 7e6cf05c4b78eac46a523f28de147cfc
   - enabled: 1
     path: Assets/Scenes/Credits.unity
     guid: b76de6d2a1b262d429b5bdf256889338
+  - enabled: 0
+    path: Assets/Scenes/ArenaTest.unity
+    guid: c62f1aee850bb4c498275933666c86a4
+  - enabled: 1
+    path: Assets/Scenes/BattleArena.unity
+    guid: 9ebe358ee5100f446a9b10c24675c558
+  - enabled: 1
+    path: Assets/Scenes/Win Scene.unity
+    guid: dad8b7a5ba501034890e0541eb161c9f
+  - enabled: 1
+    path: Assets/Scenes/Loss Scene.unity
+    guid: 83054b4a938dee24087d99db4a5a59a0
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: aa7849851084b8641a7ef882d404b40b,
       type: 2}

@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -61,7 +62,8 @@ public class PlayerMovement : MonoBehaviour
     public DefaultInputActions playerInput;
     private InputAction move;
 
-
+    //hi it's Gabriel
+    private bool damageBoost;
 
     private void Start()
     {
@@ -88,6 +90,11 @@ public class PlayerMovement : MonoBehaviour
             rb.drag = groundDrag;
         else
             rb.drag = 0;
+
+        if (hp == 0)
+        {
+            SceneManager.LoadScene("Loss Scene");
+        }
     }
 
     private void FixedUpdate()
@@ -219,7 +226,8 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector3(rb.velocity.x, maxYSpeed, rb.velocity.z);
     }
     void OnTriggerEnter(Collider collider){
-        if(collider.CompareTag("EnemyAttack") || collider.CompareTag("Enemy")){
+        if((collider.CompareTag("EnemyAttack") || collider.CompareTag("Enemy")) && !damageBoost){
+            damageBoost = true; //hi again
             if(!iFrames) StartCoroutine(TakeDamage());
         }
     }
@@ -235,7 +243,9 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(1f);
         iFrames = false;
 
-        yield return null;
+        yield return new WaitForSeconds(2.5f);
+
+        damageBoost = false;
     }
     private void OnEnable() {
         
