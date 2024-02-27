@@ -32,8 +32,11 @@ public class BossAttacks : MonoBehaviour
     private Material bossMat;
     private Color bossCol;
 
+    private BossBehavior bb;
+
     void Start()
     {
+        bb = FindObjectOfType<BossBehavior>();
 
         spinAttack = transform.GetChild(0).gameObject;
 
@@ -54,9 +57,10 @@ public class BossAttacks : MonoBehaviour
 
         if (jumping)
         {
+            bb.state = BossBehavior.BossState.attacking;
+
             transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, transform.position.y + jumpHeight), 0.01f);
 
-            //Debug.Log("goin up");
         }
 
         if (transform.position.y >= jumpHeight && jumping)
@@ -72,6 +76,8 @@ public class BossAttacks : MonoBehaviour
         
         transform.position = startPos;
         Instantiate(waveAttack);
+
+        bb.state = BossBehavior.BossState.following;
     }
 
     IEnumerator Hydro()
@@ -110,6 +116,8 @@ public class BossAttacks : MonoBehaviour
 
     IEnumerator Spin()
     {
+        bb.state = BossBehavior.BossState.attacking;
+
         charging = true;
         StartCoroutine(Charge());
         yield return new WaitForSeconds(2.2f);
@@ -132,6 +140,9 @@ public class BossAttacks : MonoBehaviour
 
         spinning = false;
         spinAttack.SetActive(false);
+
+        bb.state = BossBehavior.BossState.following;
+
     }
 
     IEnumerator Charge()
