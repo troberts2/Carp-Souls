@@ -162,7 +162,6 @@ MonoBehaviour:
   spinTime: 2
   attackTimer: 5
   spinTriggerDistance: 20
-  lookSpeed: 0
 --- !u!1 &7993510458689443302
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,7 +176,7 @@ GameObject:
   - component: {fileID: 1870724977701926216}
   m_Layer: 0
   m_Name: SpinAttack
-  m_TagString: Untagged
+  m_TagString: EnemyAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

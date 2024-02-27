@@ -61,7 +61,8 @@ public class PlayerMovement : MonoBehaviour
     public DefaultInputActions playerInput;
     private InputAction move;
 
-
+    //hi it's Gabriel
+    private bool damageBoost;
 
     private void Start()
     {
@@ -221,7 +222,8 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector3(rb.velocity.x, maxYSpeed, rb.velocity.z);
     }
     void OnTriggerEnter(Collider collider){
-        if(collider.CompareTag("EnemyAttack") || collider.CompareTag("Enemy")){
+        if((collider.CompareTag("EnemyAttack") || collider.CompareTag("Enemy")) && !damageBoost){
+            damageBoost = true; //hi again
             StartCoroutine(TakeDamage());
         }
     }
@@ -234,7 +236,9 @@ public class PlayerMovement : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         transform.GetChild(1).GetComponent<MeshRenderer>().material.color = Color.yellow;
 
-        yield return null;
+        yield return new WaitForSeconds(2.5f);
+
+        damageBoost = false;
     }
     private void OnEnable() {
         

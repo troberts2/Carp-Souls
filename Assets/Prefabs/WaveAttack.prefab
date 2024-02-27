@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6599937648212623514}
   m_Layer: 0
   m_Name: WaveAttack
-  m_TagString: Untagged
+  m_TagString: EnemyAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: 4226482897491463984}
   m_Layer: 0
   m_Name: Wave
-  m_TagString: Untagged
+  m_TagString: EnemyAttack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2043,7 +2043,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c9e7682b7419d234b8b042454de35f48, type: 2}
+  - {fileID: 2100000, guid: b0e2b344eca7a1d4fa462efb7d0cf834, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
