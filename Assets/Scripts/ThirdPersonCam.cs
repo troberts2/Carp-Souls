@@ -44,12 +44,12 @@ public class ThirdPersonCam : MonoBehaviour
         float verticalInput = move.ReadValue<Vector2>().y;
         Vector3 inputDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
-        if(player.GetComponent<EnemyLockOn>().enemyLocked){
+        if(player.GetComponent<EnemyLockOn>().enemyLocked && FindObjectOfType<PlayerMovement>().state != PlayerMovement.MovementState.dashing && FindObjectOfType<PlayerMovement>().state != PlayerMovement.MovementState.attacking){
             playerObj.forward = Vector3.Slerp(playerObj.forward, orientation.forward, Time.deltaTime * rotationSpeed);
             return;
         }
 
-        if(inputDir != Vector3.zero){
+        if(inputDir != Vector3.zero && FindObjectOfType<PlayerMovement>().state != PlayerMovement.MovementState.dashing && FindObjectOfType<PlayerMovement>().state != PlayerMovement.MovementState.attacking){
             playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
         }
     }

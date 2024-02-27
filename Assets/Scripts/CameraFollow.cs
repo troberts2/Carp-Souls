@@ -72,7 +72,7 @@ public class CameraFollow : MonoBehaviour
         rotY = Mathf.Clamp(rotY, clampAxis.x, clampAxis.y);
 
         Quaternion localRotation = Quaternion.Euler(rotY, rotX, 0);
-        transform.rotation = Quaternion.Slerp(transform.rotation, localRotation, Time.deltaTime * rotate_Smoothing);
+        if(FindObjectOfType<PlayerMovement>().state != PlayerMovement.MovementState.dashing && FindObjectOfType<PlayerMovement>().state != PlayerMovement.MovementState.attacking)  transform.rotation = Quaternion.Slerp(transform.rotation, localRotation, Time.deltaTime * rotate_Smoothing);
     }
 
     void LookAtTarget(){
