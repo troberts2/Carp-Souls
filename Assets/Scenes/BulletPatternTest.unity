@@ -270,6 +270,7 @@ GameObject:
   m_Component:
   - component: {fileID: 907586290}
   - component: {fileID: 907586289}
+  - component: {fileID: 907586291}
   m_Layer: 0
   m_Name: Boss
   m_TagString: Untagged
@@ -289,50 +290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b76d35236c863844da1b47c56db6d98c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numberOfProjectilesPerArray: 2
-  individualArraySpread: 90
-  numOfArrays: 2
-  totalArraySpread: 180
-  projectileSpeed: 20
-  acceleration: 0
-  curve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: -3.9704251
-      outSlope: -3.9704251
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.50046337
-      value: -0.9870523
-      inSlope: 0.003682971
-      outSlope: 0.003682971
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 3.977791
-      outSlope: 3.977791
-      tangentMode: 34
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  useCurve: 0
-  attackRotateSpeed: 15
-  rotateSpeedChangeRate: 0
-  fireRate: 0.1
-  maxSpinSpeed: 30
+  bulletPattern1: {fileID: 11400000, guid: cb7fece701468ea4e8a11067283c6297, type: 2}
   ProjectilePrefab: {fileID: 5278831797797300730, guid: 2b3dd38f78af87e409c4564a2acd21fd,
     type: 3}
   radial: 0
@@ -351,6 +309,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &907586291
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 907586288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dcda8f959cd7b84fb5f99159140fc39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 5278831797797300730, guid: 2b3dd38f78af87e409c4564a2acd21fd,
+    type: 3}
+  pooledObjects: []
+  countToPool: 400
+  canExpand: 1
 --- !u!1 &1674397992
 GameObject:
   m_ObjectHideFlags: 0
