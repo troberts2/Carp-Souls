@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class BossBehavior : MonoBehaviour
@@ -32,7 +33,11 @@ public class BossBehavior : MonoBehaviour
             attackCdTimer = attackCd;
 
         }
-
+        
+        if(hp == 0)
+        {
+            SceneManager.LoadScene("Win Scene");
+        }
     }
 
     void FollowPlayerOrientation(){
