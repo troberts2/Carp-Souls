@@ -16,7 +16,6 @@ public class BossBehavior : MonoBehaviour
     private float secondsBetweenAttacks;
     public Image bossHpBar;
     public BossState state;
-    public BulletPattern[] bulletPatterns;
     internal BulletPatternTemplate currentPattern;
     public BossSettings bossSettings;
     public enum BossState{
@@ -75,7 +74,7 @@ public class BossBehavior : MonoBehaviour
     }
 
     void Attack(){
-        currentPattern = new BulletPatternTemplate(bulletPatterns[Random.Range(0, bulletPatterns.Length)]);
+        currentPattern = new BulletPatternTemplate(bossSettings.bulletPatterns[Random.Range(0, bossSettings.bulletPatterns.Length)]);
         if(GetComponent<RadialBullets>() != null){
             StartCoroutine(GetComponent<RadialBullets>().ShootBullets(currentPattern));
         }
