@@ -8,6 +8,7 @@ public class BulletHellBullet : MonoBehaviour
     private RadialBullets radialBullets;
     private float bulletSpeed = 0;
     private bool useTheCurve;
+    private BulletPatternTemplate bulletPattern;
     float time = 0;
 
     // Start is called before the first frame update
@@ -22,24 +23,30 @@ public class BulletHellBullet : MonoBehaviour
     }
     private void OnEnable() {
         Invoke(nameof(NoLongerStart), .01f);
-        Invoke(nameof(DisableObj), 5f);
+        //Invoke(nameof(DisableObj), 20f);
         
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        loopCurve();
-        if(useTheCurve) rb.velocity = transform.forward * bulletSpeed * radialBullets.currentPattern.curve.Evaluate(time);
-        else rb.velocity = transform.forward * bulletSpeed;
-        bulletSpeed += radialBullets.currentPattern.acceleration;
+        if(bulletPattern != null){
+            loopCurve();
+            if(useTheCurve) rb.velocity = transform.forward * bulletSpeed * bulletPattern.curve.Evaluate(time);
+            else rb.velocity = transform.forward * bulletSpeed;
+            bulletSpeed += bulletPattern.acceleration;
+        }
+
     }
     void loopCurve(){
         if(time < 1) time += Time.deltaTime;
         if(time > 1) time = 0;
     }
     private void OnCollisionEnter(Collision other) {
-        gameObject.SetActive(false);
+        if(other.collider.CompareTag("Ground") || other.collider.CompareTag("Player")){
+            gameObject.SetActive(false);
+        }
+        
     }
     private void DisableObj(){
         if(gameObject.activeInHierarchy){
@@ -47,7 +54,11 @@ public class BulletHellBullet : MonoBehaviour
         }
     }
     private void NoLongerStart(){
-        bulletSpeed = radialBullets.currentPattern.projectileSpeed;
-        useTheCurve = radialBullets.currentPattern.useCurve; 
+        if(radialBullets.bb.currentPattern != null){
+            bulletPattern = radialBullets.bb.currentPattern;
+            bulletSpeed = bulletPattern.projectileSpeed;
+            useTheCurve = bulletPattern.useCurve; 
+        }
+
     }
 }

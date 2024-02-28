@@ -54,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public bool dashing;
-    public bool iFrames;
+    public bool iFrames = false;
     public float maxHp = 3f;
     private float hp;
     public Image playerHpBar;
@@ -117,7 +117,6 @@ public class PlayerMovement : MonoBehaviour
             desiredMoveSpeed = dashSpeed;
             speedChangeFactor = dashSpeedChangeFactor;
             playerMaterial.color = Color.green;
-            iFrames = true;
         }
 
         //Mode = Attack
@@ -141,6 +140,13 @@ public class PlayerMovement : MonoBehaviour
             state = MovementState.air;
 
             desiredMoveSpeed = walkSpeed;
+        }
+
+        if(!iFrames){
+            Physics.IgnoreLayerCollision (3, 9, false);
+        }
+        else{
+            Physics.IgnoreLayerCollision (3, 9, true);
         }
 
         bool desiredMoveSpeedHasChanged = desiredMoveSpeed != lastDesiredMoveSpeed;
@@ -224,8 +230,8 @@ public class PlayerMovement : MonoBehaviour
         if (maxYSpeed != 0 && rb.velocity.y > maxYSpeed)
             rb.velocity = new Vector3(rb.velocity.x, maxYSpeed, rb.velocity.z);
     }
-    void OnTriggerEnter(Collider collider){
-        if((collider.CompareTag("EnemyAttack") || collider.CompareTag("Enemy"))){
+    void OnCollisionEnter(Collision other){
+        if((other.collider.CompareTag("EnemyAttack") || other.collider.CompareTag("Enemy"))){
             damageBoost = true; //hi again
             if(!iFrames) StartCoroutine(TakeDamage());
         }

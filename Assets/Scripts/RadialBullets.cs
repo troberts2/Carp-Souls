@@ -9,6 +9,7 @@ public class RadialBullets : MonoBehaviour
     internal BulletPatternTemplate currentPattern;
 
     private float timeTillFire;
+    private float shootingTime;
     private bool increase = true;
     public GameObject ProjectilePrefab; 
     public bool radial = false;        // Prefab to spawn.
@@ -16,10 +17,9 @@ public class RadialBullets : MonoBehaviour
     [Header("Private Variables")]
     private Vector3 startPoint;                 // Starting position of the bullet.
     private const float radius = 5F;          // Help us find the move direction.
-    private BossBehavior bb;
+    internal BossBehavior bb;
     private void Start() {
         bb = GetComponent<BossBehavior>();
-        currentPattern = new BulletPatternTemplate(bulletPattern1);
     }
 
 
@@ -27,26 +27,30 @@ public class RadialBullets : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (timeTillFire <= 0 && Input.GetKey(KeyCode.Space))
+        if (timeTillFire <= 0 && Input.GetKeyDown(KeyCode.Space))
         {
             startPoint = transform.position;
-            StartCoroutine(ShootBullets());
         }
         else{
             timeTillFire -= Time.deltaTime;
         }
+        if(shootingTime > 0){
+            shootingTime -= Time.deltaTime;
+        }
 
-        if(true){ //bb.state == BossBehavior.BossState.attacking
+        if(bb.state == BossBehavior.BossState.attacking){ 
             transform.Rotate(Vector3.up * currentPattern.attackRotateSpeed * Time.deltaTime);
         }
-        if(currentPattern.rotateSpeedChangeRate > 0)   SpinSpeedChange();
+        if(currentPattern != null && currentPattern.rotateSpeedChangeRate > 0)   SpinSpeedChange();
     }
 
 
 
-    private IEnumerator ShootBullets(){
-        currentPattern = new BulletPatternTemplate(bulletPattern1);;
-        timeTillFire = currentPattern.fireRate;
+    public IEnumerator ShootBullets(BulletPatternTemplate currentPattern){
+        bb.state = BossBehavior.BossState.attacking;
+        this.currentPattern = currentPattern;
+        
+        shootingTime = currentPattern.secondsPerAttack;
         float angleStep;
         float arrayAngleStep;
 
@@ -65,28 +69,48 @@ public class RadialBullets : MonoBehaviour
             
             arrayAngleStep = currentPattern.totalArraySpread;
         }
+        for(int r = 0; r < currentPattern.repeatTimes; r++){
+            bb.state = BossBehavior.BossState.attacking;
+            while(shootingTime > 0){
+                if(timeTillFire <= 0){
+                    timeTillFire = currentPattern.fireRate;
+                    for(int x = 0; x < currentPattern.numOfArrays; x++){
+                        for(int i = 0; i < currentPattern.numberOfProjectilesPerArray; i++){
+                            float projectileDirXposition = transform.position.x + Mathf.Sin(((45 + angle + arrayAngle) * Mathf.PI) / 180) * 5;
+                            float projectileDirZposition = transform.position.z + Mathf.Cos(((45 + angle + arrayAngle) * Mathf.PI) / 180) * 5;
+                            
+                            Vector3 projectileVector = new Vector3(projectileDirXposition, 0, projectileDirZposition);
+                            Vector3 projectileMoveDirection = (projectileVector - (Vector3)transform.position).normalized * 5;
 
-        for(int x = 0; x < currentPattern.numOfArrays; x++){
-            for(int i = 0; i < currentPattern.numberOfProjectilesPerArray; i++){
-                float projectileDirXposition = transform.position.x + Mathf.Sin(((angle + arrayAngle) * Mathf.PI) / 180) * 5;
-                float projectileDirZposition = transform.position.z + Mathf.Cos(((angle + arrayAngle) * Mathf.PI) / 180) * 5;
-                
-                Vector3 projectileVector = new Vector3(projectileDirXposition, 0, projectileDirZposition);
-                Vector3 projectileMoveDirection = (projectileVector - (Vector3)transform.position).normalized * 5;
+                            var proj = ObjectPool.instance.GetPooledObject();//Instantiate(ProjectilePrefab, transform.position, Quaternion.Euler(0, angle - arrayAngle, 0)); //Quaternion.LookRotation(projectileMoveDirection, Vector3.up)
+                            //if(proj == null) yield break;
+                            proj.transform.position = transform.position;
+                            proj.transform.rotation = Quaternion.Euler(0,angle -  arrayAngle, 0);
+                            proj.transform.rotation *= transform.rotation;
+                            proj.SetActive(true);
+                            angle += angleStep;
+                        }
+                        //add wait here if u want wait between attack arrays
+                        arrayAngle += arrayAngleStep;
+                        angle = 0;
+                    } 
+                    arrayAngle = 0;
+                    yield return null;
+                }
+                yield return null;
 
-                var proj = ObjectPool.instance.GetPooledObject();//Instantiate(ProjectilePrefab, transform.position, Quaternion.Euler(0, angle - arrayAngle, 0)); //Quaternion.LookRotation(projectileMoveDirection, Vector3.up)
-                //if(proj == null) yield break;
-                proj.transform.position = transform.position;
-                proj.transform.rotation = Quaternion.Euler(0, angle -  arrayAngle, 0);
-                proj.transform.rotation *= transform.rotation;
-                proj.SetActive(true);
-                angle += angleStep;
             }
-            //add wait here if u want wait between attack arrays
-            arrayAngle += arrayAngleStep;
-            angle = 0;
+            angle = 0f;
+            arrayAngle = 0f;
+            bb.state = BossBehavior.BossState.following;
+            yield return new WaitForSeconds(currentPattern.attackBreakTime);
+            shootingTime = currentPattern.secondsPerAttack;
         }
-        yield return null;
+
+
+
+        yield return new WaitForSeconds(1f);
+
 
     }
     void SpinSpeedChange(){
@@ -112,6 +136,9 @@ public class BulletPatternTemplate{
     internal float rotateSpeedChangeRate;
     internal float fireRate;
     internal float maxSpinSpeed;
+    internal int repeatTimes;
+    internal float secondsPerAttack;
+    internal float attackBreakTime;
 
     public BulletPatternTemplate(BulletPattern bulletPattern){
         numberOfProjectilesPerArray = bulletPattern.numberOfProjectilesPerArray;
@@ -126,5 +153,8 @@ public class BulletPatternTemplate{
         rotateSpeedChangeRate = bulletPattern.rotateSpeedChangeRate;
         fireRate = bulletPattern.fireRate;
         maxSpinSpeed = bulletPattern.maxSpinSpeed;
+        repeatTimes = bulletPattern.repeatTime;
+        secondsPerAttack = bulletPattern.secondsPerAttack;
+        attackBreakTime = bulletPattern.attackBreakTime;
     }
 }
