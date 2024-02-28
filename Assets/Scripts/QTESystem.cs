@@ -79,7 +79,7 @@ public class QTESystem : MonoBehaviour
             else if (mash <= 0 && mashCount >= mashQuota)
             {
                 QTEStatus.text = "Fish Caught?";
-                SceneManager.LoadScene(3);
+                FindObjectOfType<LevelLoader>().LoadNextLevel();
             }
         }
     }
