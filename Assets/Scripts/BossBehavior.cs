@@ -6,14 +6,19 @@ using UnityEngine.UI;
 
 public class BossBehavior : MonoBehaviour
 {
+    private bool fightStarting = true;
     private float hp;
     public float maxHp = 15;
     public float rotationSpeed = 5f;
     public Transform player;
     public float attackCd;
     private float attackCdTimer;
+    private float secondsBetweenAttacks;
     public Image bossHpBar;
     public BossState state;
+    public BulletPattern[] bulletPatterns;
+    internal BulletPatternTemplate currentPattern;
+    public BossSettings bossSettings;
     public enum BossState{
         attacking,
         following,
@@ -21,16 +26,20 @@ public class BossBehavior : MonoBehaviour
     }
 
     void Start(){
+        maxHp = bossSettings.bossMaxHp;
+        secondsBetweenAttacks = bossSettings.secondsBetweenAttacks;
         hp = maxHp;
         state = BossState.following;
+        StartCoroutine(StartBattleDelay());
     }
     void Update(){
         if (attackCdTimer > 0) attackCdTimer -= Time.deltaTime;
+        else if(!fightStarting) Attack();
 
         if(state == BossState.following) FollowPlayerOrientation();
 
-        if(state == BossState.attacking){
-            attackCdTimer = attackCd;
+        if(state == BossState.attacking && attackCdTimer <= 0){
+            attackCdTimer = secondsBetweenAttacks + (currentPattern.secondsPerAttack * currentPattern.repeatTimes) + (currentPattern.attackBreakTime * (currentPattern.repeatTimes -1));
 
         }
         
@@ -63,6 +72,18 @@ public class BossBehavior : MonoBehaviour
         GetComponent<MeshRenderer>().material.color = Color.red;
 
         yield return null;
+    }
+
+    void Attack(){
+        currentPattern = new BulletPatternTemplate(bulletPatterns[Random.Range(0, bulletPatterns.Length)]);
+        if(GetComponent<RadialBullets>() != null){
+            StartCoroutine(GetComponent<RadialBullets>().ShootBullets(currentPattern));
+        }
+
+    }
+    IEnumerator StartBattleDelay(){
+        yield return new WaitForSeconds(5f);
+        fightStarting = false;
     }
 
 }

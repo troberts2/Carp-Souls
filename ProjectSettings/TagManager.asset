@@ -7,17 +7,18 @@ TagManager:
   - Enemy
   - playerBobber
   - EnemyAttack
+  - Ground
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - ground
   - SecVision
   - Enemy
-  - 
+  - EnemyAttack
   - 
   - 
   - 
