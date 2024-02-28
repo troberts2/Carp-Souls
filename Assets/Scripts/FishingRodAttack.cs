@@ -53,6 +53,12 @@ public class FishingRodAttack : MonoBehaviour
         if(retract){
             RetractLine();
         }
+        if(!attacking && !retract){
+            bobber.GetChild(0).GetComponent<SphereCollider>().enabled = false;
+        }
+        else{
+            bobber.GetChild(0).GetComponent<SphereCollider>().enabled = true;
+        }
         if(bobber.position == bobberResetPos.position){
             retract = false;
             elapsedRetractTime = 0;
