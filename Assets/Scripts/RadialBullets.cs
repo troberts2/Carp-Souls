@@ -30,6 +30,7 @@ public class RadialBullets : MonoBehaviour
         if (timeTillFire <= 0 && Input.GetKeyDown(KeyCode.Space))
         {
             startPoint = transform.position;
+            StartCoroutine(ShootBullets(currentPattern));
         }
         else{
             timeTillFire -= Time.deltaTime;
