@@ -21,10 +21,6 @@ public class BossAttacks : MonoBehaviour
 
     private bool charging;
     private bool jumping;
-    private bool falling;
-    private bool spinning;
-
-    private bool chooseFlag;
     private int chooseInt;
     private int repeatCheck;
     private int repetitions;
@@ -32,8 +28,11 @@ public class BossAttacks : MonoBehaviour
     private Material bossMat;
     private Color bossCol;
 
+    private BossBehavior bb;
+
     void Start()
     {
+        bb = FindObjectOfType<BossBehavior>();
 
         spinAttack = transform.GetChild(0).gameObject;
 
@@ -54,9 +53,10 @@ public class BossAttacks : MonoBehaviour
 
         if (jumping)
         {
+            bb.state = BossBehavior.BossState.attacking;
+
             transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, transform.position.y + jumpHeight), 0.01f);
 
-            //Debug.Log("goin up");
         }
 
         if (transform.position.y >= jumpHeight && jumping)
@@ -72,6 +72,8 @@ public class BossAttacks : MonoBehaviour
         
         transform.position = startPos;
         Instantiate(waveAttack);
+
+        bb.state = BossBehavior.BossState.following;
     }
 
     IEnumerator Hydro()
@@ -110,13 +112,14 @@ public class BossAttacks : MonoBehaviour
 
     IEnumerator Spin()
     {
+        bb.state = BossBehavior.BossState.attacking;
+
         charging = true;
         StartCoroutine(Charge());
         yield return new WaitForSeconds(2.2f);
         charging = false;
         gameObject.GetComponent<MeshRenderer>().material.color = bossCol;
 
-        spinning = true;
         spinAttack.SetActive(true);
 
         float t = 0;
@@ -130,8 +133,10 @@ public class BossAttacks : MonoBehaviour
             yield return null;
         }
 
-        spinning = false;
         spinAttack.SetActive(false);
+
+        bb.state = BossBehavior.BossState.following;
+
     }
 
     IEnumerator Charge()
@@ -170,11 +175,9 @@ public class BossAttacks : MonoBehaviour
 
                 repeatCheck = chooseInt;
 
-                Debug.Log(repetitions);
             }
             else
             {
-                Debug.Log("ending repeat");
                 repetitions = 0;
                 if (chooseInt == 1)
                 {

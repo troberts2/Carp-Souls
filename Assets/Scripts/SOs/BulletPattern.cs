@@ -19,5 +19,9 @@ public class BulletPattern : ScriptableObject {
     public float rotateSpeedChangeRate = .5f;
     public float fireRate = 4f;
     public float maxSpinSpeed = 30f;
+    [Header("Rate Control")]
+    public int repeatTime = 1;
+    public float secondsPerAttack = 3f;
+    public float attackBreakTime = 1f;
 }
 

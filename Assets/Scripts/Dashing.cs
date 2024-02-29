@@ -70,6 +70,7 @@ public class Dashing : MonoBehaviour
 
         pm.dashing = true;
         pm.maxYSpeed = maxDashYSpeed;
+        pm.iFrames = true;
 
         //cam.DoFov(dashFov);
 

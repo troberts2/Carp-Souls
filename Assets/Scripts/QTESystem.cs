@@ -20,7 +20,6 @@ public class QTESystem : MonoBehaviour
     private TextMeshProUGUI QTEStatus;
 
     float mash = 5;
-    bool pressed = false;
     bool started = false;
 
     private void Awake()
@@ -79,7 +78,7 @@ public class QTESystem : MonoBehaviour
             else if (mash <= 0 && mashCount >= mashQuota)
             {
                 QTEStatus.text = "Fish Caught?";
-                SceneManager.LoadScene(3);
+                FindObjectOfType<LevelLoader>().LoadNextLevel();
             }
         }
     }

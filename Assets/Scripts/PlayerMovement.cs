@@ -54,7 +54,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public bool dashing;
-    public bool iFrames;
+    public bool iFrames = false;
     public float maxHp = 3f;
     private float hp;
     public Image playerHpBar;
@@ -62,8 +62,6 @@ public class PlayerMovement : MonoBehaviour
     public DefaultInputActions playerInput;
     private InputAction move;
 
-    //hi it's Gabriel
-    private bool damageBoost;
 
     private void Start()
     {
@@ -117,7 +115,6 @@ public class PlayerMovement : MonoBehaviour
             desiredMoveSpeed = dashSpeed;
             speedChangeFactor = dashSpeedChangeFactor;
             playerMaterial.color = Color.green;
-            iFrames = true;
         }
 
         //Mode = Attack
@@ -141,6 +138,13 @@ public class PlayerMovement : MonoBehaviour
             state = MovementState.air;
 
             desiredMoveSpeed = walkSpeed;
+        }
+
+        if(!iFrames){
+            Physics.IgnoreLayerCollision (3, 9, false);
+        }
+        else{
+            Physics.IgnoreLayerCollision (3, 9, true);
         }
 
         bool desiredMoveSpeedHasChanged = desiredMoveSpeed != lastDesiredMoveSpeed;
@@ -224,16 +228,14 @@ public class PlayerMovement : MonoBehaviour
         if (maxYSpeed != 0 && rb.velocity.y > maxYSpeed)
             rb.velocity = new Vector3(rb.velocity.x, maxYSpeed, rb.velocity.z);
     }
-    void OnTriggerEnter(Collider collider){
-        if((collider.CompareTag("EnemyAttack") || collider.CompareTag("Enemy"))){
-            damageBoost = true; //hi again
+    void OnCollisionEnter(Collision other){
+        if((other.collider.CompareTag("EnemyAttack") || other.collider.CompareTag("Enemy"))){
             if(!iFrames) StartCoroutine(TakeDamage());
         }
     }
     IEnumerator TakeDamage(){
         //change to boss damage later
         hp--;
-        Debug.Log(hp);
         iFrames = true;
         //change later just to show its taking damage
         transform.GetChild(1).GetComponent<MeshRenderer>().material.color = Color.magenta;
@@ -244,7 +246,6 @@ public class PlayerMovement : MonoBehaviour
 
         yield return new WaitForSeconds(2.5f);
 
-        damageBoost = false;
     }
     private void OnEnable() {
         
