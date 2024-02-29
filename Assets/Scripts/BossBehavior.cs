@@ -38,7 +38,9 @@ public class BossBehavior : MonoBehaviour
         if(state == BossState.following) FollowPlayerOrientation();
 
         if(state == BossState.attacking && attackCdTimer <= 0){
-            attackCdTimer = secondsBetweenAttacks + (currentPattern.secondsPerAttack * currentPattern.repeatTimes) + (currentPattern.attackBreakTime * (currentPattern.repeatTimes -1));
+            if(currentPattern != null){
+                attackCdTimer = secondsBetweenAttacks + (currentPattern.secondsPerAttack * currentPattern.repeatTimes) + (currentPattern.attackBreakTime * (currentPattern.repeatTimes -1));
+            }else   attackCdTimer = secondsBetweenAttacks;
 
         }
         
@@ -63,7 +65,6 @@ public class BossBehavior : MonoBehaviour
     IEnumerator TakeDamage(){
         //change to player damage later
         hp--;
-        Debug.Log("hit" + hp);
         bossHpBar.fillAmount = hp/maxHp;
         //change later just to show its taking damage
         GetComponent<MeshRenderer>().material.color = Color.magenta;
@@ -74,7 +75,10 @@ public class BossBehavior : MonoBehaviour
     }
 
     void Attack(){
-        currentPattern = new BulletPatternTemplate(bossSettings.bulletPatterns[Random.Range(0, bossSettings.bulletPatterns.Length)]);
+        if(bossSettings.bulletPatterns.Length != 0){
+            currentPattern = new BulletPatternTemplate(bossSettings.bulletPatterns[Random.Range(0, bossSettings.bulletPatterns.Length)]);
+        }
+        
         if(GetComponent<RadialBullets>() != null){
             StartCoroutine(GetComponent<RadialBullets>().ShootBullets(currentPattern));
         }

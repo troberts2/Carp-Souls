@@ -29,11 +29,11 @@ public class Wave : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player"  || other.collider.CompareTag("Ground"))
         {
-            Vector3 direction = other.ClosestPointOnBounds(-transform.position);
+            Vector3 direction = other.collider.ClosestPointOnBounds(-transform.position);
             direction = -direction.normalized;
 
             Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();

@@ -21,10 +21,6 @@ public class BossAttacks : MonoBehaviour
 
     private bool charging;
     private bool jumping;
-    private bool falling;
-    private bool spinning;
-
-    private bool chooseFlag;
     private int chooseInt;
     private int repeatCheck;
     private int repetitions;
@@ -124,7 +120,6 @@ public class BossAttacks : MonoBehaviour
         charging = false;
         gameObject.GetComponent<MeshRenderer>().material.color = bossCol;
 
-        spinning = true;
         spinAttack.SetActive(true);
 
         float t = 0;
@@ -138,7 +133,6 @@ public class BossAttacks : MonoBehaviour
             yield return null;
         }
 
-        spinning = false;
         spinAttack.SetActive(false);
 
         bb.state = BossBehavior.BossState.following;
@@ -181,11 +175,9 @@ public class BossAttacks : MonoBehaviour
 
                 repeatCheck = chooseInt;
 
-                Debug.Log(repetitions);
             }
             else
             {
-                Debug.Log("ending repeat");
                 repetitions = 0;
                 if (chooseInt == 1)
                 {

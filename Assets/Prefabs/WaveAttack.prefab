@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6599937648212623514}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WaveAttack
   m_TagString: EnemyAttack
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 3588831247094067843}
   - component: {fileID: 952021654032096689}
   - component: {fileID: 4226482897491463984}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wave
   m_TagString: EnemyAttack
   m_Icon: {fileID: 0}
@@ -2088,11 +2088,11 @@ MeshCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
 --- !u!114 &4226482897491463984
