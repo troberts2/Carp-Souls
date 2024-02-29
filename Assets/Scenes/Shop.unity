@@ -1344,11 +1344,20 @@ MonoBehaviour:
   item1: {fileID: 1560017676}
   item2: {fileID: 1613233825}
   item3: {fileID: 272619599}
-  shopItems: 000000000000000000000000
-  possibleItems:
-  - the
+  shopItems:
+  - 
+  - 
+  - 
+  rodItems:
   - lol
-  - and
+  - lmao
+  - rofl
+  gearItems:
+  - L
+  - ratio
+  - bruh
+  totalItems:
+  - 
 --- !u!114 &1734782852
 MonoBehaviour:
   m_ObjectHideFlags: 0

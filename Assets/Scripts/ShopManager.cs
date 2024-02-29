@@ -17,29 +17,55 @@ public class ShopManager : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI item3;
 
-    private List<int> items = new List<int>();
+    private List<string> items = new List<string>();
 
     [SerializeField]
-    private int[] shopItems = new int[3];
+    private string[] shopItems = new string[3];
 
     [SerializeField]
-    private string[] possibleItems;
+    private string[] rodItems;
+
+    [SerializeField]
+    private string[] gearItems;
+
+    [SerializeField]
+    private List<string> totalItems = new List<string>();
 
     // Start is called before the first frame update
     void Start()
     {
         int i = 0;
 
-        foreach (int item in shopItems)
+        totalItems.AddRange(rodItems);
+        totalItems.AddRange(gearItems);
+        totalItems.Remove("");
+
+        foreach (string item in shopItems)
         {
-            shopItems[i] = Random.Range(0, possibleItems.Length + 1);
-            AlterDuplicates();
+            switch (i)
+            {
+                case 0:
+                    shopItems[i] = rodItems[Random.Range(0, rodItems.Length)];
+                    break;
+                case 1:
+                    shopItems[i] = gearItems[Random.Range(0, gearItems.Length)];
+                    break;
+                case 2:
+                    totalItems.Remove(shopItems[0]);
+                    totalItems.Remove(shopItems[1]);
+                    shopItems[i] = totalItems.ToArray()[Random.Range(0, totalItems.ToArray().Length)];
+                    break;
+
+            }
+            
             i++;
         }
 
-        item1.text = shopItems[0].ToString();
-        item2.text = shopItems[1].ToString();
-        item3.text = shopItems[2].ToString();
+        AlterDuplicates();
+
+        item1.text = shopItems[0];
+        item2.text = shopItems[1];
+        item3.text = shopItems[2];
     }
 
     private void Update()
@@ -59,6 +85,9 @@ public class ShopManager : MonoBehaviour
 
     private void AlterDuplicates()
     {
+        int i = 0;
+
+
         //for (int j = 0; j < shopItems.Length; j++)
         //{
         //    if (shopItems[i] == shopItems[j])
