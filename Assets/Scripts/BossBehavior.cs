@@ -12,7 +12,7 @@ public class BossBehavior : MonoBehaviour
     public float rotationSpeed = 5f;
     public Transform player;
     public float attackCd;
-    private float attackCdTimer = 60;
+    private float attackCdTimer;
     private float secondsBetweenAttacks;
     public Image bossHpBar;
     public BossState state;
