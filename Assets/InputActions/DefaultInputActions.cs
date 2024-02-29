@@ -1026,7 +1026,7 @@ public partial class @DefaultInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""ab948f8b-d2cc-4d4c-bf49-4568fee408f9"",
-                    ""path"": ""<XInputController>/buttonSouth"",
+                    ""path"": ""<XInputController>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad;Keyboard&Mouse"",
@@ -1048,7 +1048,7 @@ public partial class @DefaultInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""3a4c4cb2-3937-486c-9721-6ed4e49bc6a5"",
-                    ""path"": ""<DualShockGamepad>/buttonSouth"",
+                    ""path"": ""<DualShockGamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Gamepad;Keyboard&Mouse"",
@@ -1059,7 +1059,7 @@ public partial class @DefaultInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""10e6c8b1-c3d3-47c6-82ba-c6a32e3c4c32"",
-                    ""path"": ""<SwitchProControllerHID>/buttonEast"",
+                    ""path"": ""<SwitchProControllerHID>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse;Gamepad"",
@@ -1070,7 +1070,7 @@ public partial class @DefaultInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""2116fe2b-b289-4695-a99b-bb87ffb89c53"",
-                    ""path"": ""<NimbusGamepadHid>/buttonSouth"",
+                    ""path"": ""<NimbusGamepadHid>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse;Gamepad"",
@@ -1081,7 +1081,7 @@ public partial class @DefaultInputActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""5cf0680e-8ce5-4e8b-8c20-3c730c91e3af"",
-                    ""path"": ""<WebGLGamepad>/buttonSouth"",
+                    ""path"": ""<WebGLGamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse;Gamepad"",
