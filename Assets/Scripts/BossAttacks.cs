@@ -181,11 +181,9 @@ public class BossAttacks : MonoBehaviour
 
                 repeatCheck = chooseInt;
 
-                Debug.Log(repetitions);
             }
             else
             {
-                Debug.Log("ending repeat");
                 repetitions = 0;
                 if (chooseInt == 1)
                 {

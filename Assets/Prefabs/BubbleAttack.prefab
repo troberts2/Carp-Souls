@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8867679942919745153}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BubbleAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 3257234871309309351}
   - component: {fileID: 5470594412779207667}
   - component: {fileID: 2226476857198734790}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bubble
   m_TagString: EnemyAttack
   m_Icon: {fileID: 0}

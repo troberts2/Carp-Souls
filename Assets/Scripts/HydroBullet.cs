@@ -26,7 +26,7 @@ public class HydroBullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject == player)
+        if (collision.gameObject == player || collision.collider.CompareTag("Ground"))
         {
             Destroy(transform.parent.gameObject);
             Destroy(gameObject);
