@@ -62,8 +62,6 @@ public class PlayerMovement : MonoBehaviour
     public DefaultInputActions playerInput;
     private InputAction move;
 
-    //hi it's Gabriel
-    private bool damageBoost;
 
     private void Start()
     {
@@ -232,14 +230,12 @@ public class PlayerMovement : MonoBehaviour
     }
     void OnCollisionEnter(Collision other){
         if((other.collider.CompareTag("EnemyAttack") || other.collider.CompareTag("Enemy"))){
-            damageBoost = true; //hi again
             if(!iFrames) StartCoroutine(TakeDamage());
         }
     }
     IEnumerator TakeDamage(){
         //change to boss damage later
         hp--;
-        Debug.Log(hp);
         iFrames = true;
         //change later just to show its taking damage
         transform.GetChild(1).GetComponent<MeshRenderer>().material.color = Color.magenta;
@@ -250,7 +246,6 @@ public class PlayerMovement : MonoBehaviour
 
         yield return new WaitForSeconds(2.5f);
 
-        damageBoost = false;
     }
     private void OnEnable() {
         

@@ -20,7 +20,6 @@ public class QTESystem : MonoBehaviour
     private TextMeshProUGUI QTEStatus;
 
     float mash = 5;
-    bool pressed = false;
     bool started = false;
 
     private void Awake()
