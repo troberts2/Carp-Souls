@@ -313,7 +313,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 75250041}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.13870123, y: 0.000000014757135, z: -0.0000000020668092, w: 0.9903343}
+  m_LocalRotation: {x: 0.13870123, y: -0.0000000147571315, z: 0.0000000020668085,
+    w: 0.9903343}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4323,7 +4324,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1057327779}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000018462037, y: 0.6091395, z: -0.79306316, w: 0.000024925168}
+  m_LocalRotation: {x: 0.000018460303, y: 0.6091395, z: -0.79306316, w: 0.000024922823}
   m_LocalPosition: {x: -0.1714921, y: 3.2777166, z: 1.5750015}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5183,7 +5184,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1402607329}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.09252107, y: 0.000000023805491, z: -0.0000000022119953, w: 0.9957108}
+  m_LocalRotation: {x: 0.09252107, y: -0.000000029602704, z: 0.0000000027506704, w: 0.9957108}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5681,7 +5682,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1753756280}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.13870123, y: 0.0000000147571315, z: -0.0000000020668085,
+  m_LocalRotation: {x: 0.13870123, y: -0.0000000147571315, z: 0.0000000020668085,
     w: 0.9903343}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -5756,6 +5757,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5448368211132885245, guid: ef7c7ab9515bd884a8b6565e8babc4cd,
         type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5448368211132885245, guid: ef7c7ab9515bd884a8b6565e8babc4cd,
+        type: 3}
       propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
@@ -5787,7 +5793,7 @@ PrefabInstance:
     - target: {fileID: 7936452464145698501, guid: ef7c7ab9515bd884a8b6565e8babc4cd,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.2
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 7936452464145698501, guid: ef7c7ab9515bd884a8b6565e8babc4cd,
         type: 3}
