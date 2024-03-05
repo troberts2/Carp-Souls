@@ -157,9 +157,10 @@ MonoBehaviour:
     type: 3}
   hydroAttack: {fileID: 4529801440234201960, guid: 17fdaf51457017148a6796c0f0e16bf9,
     type: 3}
+  player: {fileID: 0}
   jumpHeight: 20
-  spinSpeed: 0
-  spinTime: 2
+  spinSpeed: 1300
+  spinTime: 180
   attackTimer: 5
   spinTriggerDistance: 20
 --- !u!1 &7993510458689443302
