@@ -58,6 +58,7 @@ public class BossBehavior : MonoBehaviour
     void OnTriggerEnter(Collider collider){
         if(collider.CompareTag("playerBobber")){
             StartCoroutine(TakeDamage());
+            FindObjectOfType<PlayerMovement>().SprayBloodOnHit(collider.transform.position, transform.position);
         }
     }
 
