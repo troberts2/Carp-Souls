@@ -34,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform orientation;
     public Transform playerObj;
     public Material playerMaterial;
+    public ParticleSystem bloodSpray;
 
     float horizontalInput;
     float verticalInput;
@@ -321,6 +322,12 @@ public class PlayerMovement : MonoBehaviour
     }
     void ResetIframes(){
         iFrames = false;
+    }
+    public void SprayBloodOnHit(Vector3 bobberPos, Vector3 bossPos){
+        bloodSpray.transform.position = bobberPos;
+        Vector3 dirVec = (bobberPos - bossPos).normalized;
+        bloodSpray.transform.LookAt(dirVec, Vector3.forward);
+        bloodSpray.Play();
     }
     private void OnEnable() {
         
