@@ -49,6 +49,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Drink",
+                    "type": "Button",
+                    "id": "49cc3c33-8700-4fa8-b8f6-1c4cb3833275",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -324,6 +333,28 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse;Gamepad",
                     "action": "LockToEnemy",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "60f50fe7-0aac-4075-a3ca-e55e09609b2c",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad;Keyboard&Mouse",
+                    "action": "Drink",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d315b960-69c9-4d55-b07d-5d892150ea9e",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse;Gamepad",
+                    "action": "Drink",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -1004,7 +1035,7 @@
                 {
                     "name": "",
                     "id": "ab948f8b-d2cc-4d4c-bf49-4568fee408f9",
-                    "path": "<XInputController>/buttonSouth",
+                    "path": "<XInputController>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad;Keyboard&Mouse",
@@ -1026,7 +1057,7 @@
                 {
                     "name": "",
                     "id": "3a4c4cb2-3937-486c-9721-6ed4e49bc6a5",
-                    "path": "<DualShockGamepad>/buttonSouth",
+                    "path": "<DualShockGamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "Gamepad;Keyboard&Mouse",
@@ -1037,7 +1068,7 @@
                 {
                     "name": "",
                     "id": "10e6c8b1-c3d3-47c6-82ba-c6a32e3c4c32",
-                    "path": "<SwitchProControllerHID>/buttonEast",
+                    "path": "<SwitchProControllerHID>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse;Gamepad",
@@ -1048,7 +1079,7 @@
                 {
                     "name": "",
                     "id": "2116fe2b-b289-4695-a99b-bb87ffb89c53",
-                    "path": "<NimbusGamepadHid>/buttonSouth",
+                    "path": "<NimbusGamepadHid>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse;Gamepad",
@@ -1059,7 +1090,7 @@
                 {
                     "name": "",
                     "id": "5cf0680e-8ce5-4e8b-8c20-3c730c91e3af",
-                    "path": "<WebGLGamepad>/buttonSouth",
+                    "path": "<WebGLGamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse;Gamepad",

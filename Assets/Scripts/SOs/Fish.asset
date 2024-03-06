@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossName: Fish
   bossMaxHp: 15
+  bossSpawnYOffset: 1
   secondsBetweenAttacks: 3
   bulletPatterns: []

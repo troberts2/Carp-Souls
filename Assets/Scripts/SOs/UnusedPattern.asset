@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8223d6d7a4d4bf84c9253abc63ec6b52, type: 3}
+  m_Name: UnusedPattern
+  m_EditorClassIdentifier: 
+  numberOfProjectilesPerArray: 5
+  individualArraySpread: 180
+  numOfArrays: 1
+  totalArraySpread: 0
+  projectileSpeed: 10
+  acceleration: 0.1
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.004386902
+      value: 0.49334717
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.4918942
+      value: 0.9608312
+      inSlope: 0.7564848
+      outSlope: 0.7564848
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0.52181625
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  useCurve: 1
+  attackRotateSpeed: 0
+  rotateSpeedChangeRate: 30
+  fireRate: 0.1
+  maxSpinSpeed: 50
+  repeatTime: 2
+  secondsPerAttack: 3
+  attackBreakTime: 0.5

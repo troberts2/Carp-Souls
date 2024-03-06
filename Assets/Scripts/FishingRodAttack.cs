@@ -42,7 +42,7 @@ public class FishingRodAttack : MonoBehaviour
     }
     Vector3 bobberStartPos;
     private void Update(){
-        if(attackInput.IsPressed() && !retract && !attacking && !freezePlayer && GetComponent<PlayerMovement>().state != PlayerMovement.MovementState.dashing){
+        if(attackInput.IsPressed() && !retract && !attacking && !freezePlayer && GetComponent<PlayerMovement>().state != PlayerMovement.MovementState.dashing && GetComponent<PlayerMovement>().state != PlayerMovement.MovementState.drinking){
             StartAttack();
         }
         if (attackCdTimer > 0) attackCdTimer -= Time.deltaTime;

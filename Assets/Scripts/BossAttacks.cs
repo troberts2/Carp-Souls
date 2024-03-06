@@ -33,6 +33,7 @@ public class BossAttacks : MonoBehaviour
     void Start()
     {
         bb = FindObjectOfType<BossBehavior>();
+        player = FindObjectOfType<PlayerMovement>().transform;
 
         spinAttack = transform.GetChild(0).gameObject;
 
