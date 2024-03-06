@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8223d6d7a4d4bf84c9253abc63ec6b52, type: 3}
+  m_Name: LinesGoBRRRR
+  m_EditorClassIdentifier: 
+  numberOfProjectilesPerArray: 1
+  individualArraySpread: 15
+  numOfArrays: 20
+  totalArraySpread: 20
+  projectileSpeed: 1.11
+  acceleration: -0.57
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: -0.00020217896
+      value: 0.5245819
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.5291577
+      value: 0.38660485
+      inSlope: 0.7564848
+      outSlope: 0.7564848
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0.52181625
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  useCurve: 1
+  attackRotateSpeed: -0.54
+  rotateSpeedChangeRate: 6
+  fireRate: -0.2
+  maxSpinSpeed: -2.89
+  repeatTime: 5
+  secondsPerAttack: 0.95
+  attackBreakTime: 0.5
