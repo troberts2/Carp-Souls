@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8223d6d7a4d4bf84c9253abc63ec6b52, type: 3}
-  m_Name: Spaces
+  m_Name: PufferfishLine
   m_EditorClassIdentifier: 
-  numberOfProjectilesPerArray: 10
-  individualArraySpread: 20
+  numberOfProjectilesPerArray: 1
+  individualArraySpread: 15
   numOfArrays: 20
-  totalArraySpread: 80
-  projectileSpeed: 8.6
-  acceleration: 0.46
+  totalArraySpread: 20
+  projectileSpeed: 1.11
+  acceleration: -0.57
   curve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: -0.004386902
-      value: 0.49334717
+      time: -0.00020217896
+      value: 0.5245819
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -31,8 +31,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.48383433
-      value: 1.502381
+      time: 0.5291577
+      value: 0.38660485
       inSlope: 0.7564848
       outSlope: 0.7564848
       tangentMode: 0
@@ -51,11 +51,11 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  useCurve: 0
-  attackRotateSpeed: 0
-  rotateSpeedChangeRate: 3.05
-  fireRate: 0.23
-  maxSpinSpeed: 1.2
-  repeatTime: 1
-  secondsPerAttack: 0.01
+  useCurve: 1
+  attackRotateSpeed: -0.54
+  rotateSpeedChangeRate: 6
+  fireRate: -0.2
+  maxSpinSpeed: -2.89
+  repeatTime: 5
+  secondsPerAttack: 0.95
   attackBreakTime: 0.5
