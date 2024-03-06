@@ -533,7 +533,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b76d35236c863844da1b47c56db6d98c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPattern1: {fileID: 11400000, guid: cb7fece701468ea4e8a11067283c6297, type: 2}
+  bulletPattern1: {fileID: 11400000, guid: 98639583e627ae849bbd8aeb91294a78, type: 2}
   ProjectilePrefab: {fileID: 5278831797797300730, guid: 2b3dd38f78af87e409c4564a2acd21fd,
     type: 3}
   radial: 0
@@ -586,7 +586,7 @@ MonoBehaviour:
   maxHp: 15
   rotationSpeed: 5
   player: {fileID: 1051087322}
-  attackCd: 0
+  attackCd: 4
   bossHpBar: {fileID: 1948661346}
   state: 0
   bossSettings: {fileID: 11400000, guid: c57d7359273fa0a4a998b2bdfbf59c18, type: 2}
