@@ -72,6 +72,7 @@ public class RadialBullets : MonoBehaviour
         }
         for(int r = 0; r < currentPattern.repeatTimes; r++){
             bb.state = BossBehavior.BossState.attacking;
+            //each new attack
             while(shootingTime > 0){
                 if(timeTillFire <= 0){
                     timeTillFire = currentPattern.fireRate;
@@ -86,7 +87,7 @@ public class RadialBullets : MonoBehaviour
                             var proj = ObjectPool.instance.GetPooledObject();//Instantiate(ProjectilePrefab, transform.position, Quaternion.Euler(0, angle - arrayAngle, 0)); //Quaternion.LookRotation(projectileMoveDirection, Vector3.up)
                             //if(proj == null) yield break;
                             proj.transform.position = transform.position;
-                            proj.transform.rotation = Quaternion.Euler(0,angle -  arrayAngle - 90, 0);
+                            proj.transform.rotation = Quaternion.Euler(0,angle -  arrayAngle - currentPattern.attackAngleOffset, 0);
                             proj.transform.rotation *= transform.rotation;
                             proj.SetActive(true);
                             angle += angleStep;
@@ -140,6 +141,7 @@ public class BulletPatternTemplate{
     internal int repeatTimes;
     internal float secondsPerAttack;
     internal float attackBreakTime;
+    internal float attackAngleOffset;
 
     public BulletPatternTemplate(BulletPattern bulletPattern){
         numberOfProjectilesPerArray = bulletPattern.numberOfProjectilesPerArray;
@@ -157,5 +159,6 @@ public class BulletPatternTemplate{
         repeatTimes = bulletPattern.repeatTime;
         secondsPerAttack = bulletPattern.secondsPerAttack;
         attackBreakTime = bulletPattern.attackBreakTime;
+        attackAngleOffset = bulletPattern.angleOffset;
     }
 }

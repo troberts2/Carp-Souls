@@ -65,7 +65,7 @@ public class Dashing : MonoBehaviour
 
     private void Dash()
     {
-        if (dashCdTimer > 0 || pm.state == PlayerMovement.MovementState.attacking) return;
+        if (dashCdTimer > 0 || pm.state == PlayerMovement.MovementState.attacking || pm.state == PlayerMovement.MovementState.drinking) return;
         else dashCdTimer = dashCd;
 
         pm.dashing = true;

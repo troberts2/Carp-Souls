@@ -10,6 +10,7 @@ public class BulletPattern : ScriptableObject {
     public int individualArraySpread = 180;  
     public int numOfArrays = 1;   
     public int totalArraySpread = 90;
+    public int angleOffset = 0;
     [Header("speed Settings")]
     public float projectileSpeed = 7f;               // Speed of the projectile.
     public float acceleration = .1f;
