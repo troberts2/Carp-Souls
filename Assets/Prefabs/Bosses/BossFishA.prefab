@@ -249,8 +249,8 @@ GameObject:
   - component: {fileID: 5707636207865430608}
   - component: {fileID: 407977336812288539}
   - component: {fileID: 5458923421980579733}
-  - component: {fileID: 5376895434119521010}
-  - component: {fileID: 793119093440659782}
+  - component: {fileID: 7665772442685108688}
+  - component: {fileID: 2647675328823478332}
   m_Layer: 8
   m_Name: BossFishA
   m_TagString: Enemy
@@ -394,7 +394,7 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5376895434119521010
+--- !u!114 &7665772442685108688
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -403,39 +403,28 @@ MonoBehaviour:
   m_GameObject: {fileID: 5448368211132885245}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e19e0351b7b05a49921aef016698438, type: 3}
+  m_Script: {fileID: 11500000, guid: b76d35236c863844da1b47c56db6d98c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 15
-  rotationSpeed: 5
-  player: {fileID: 0}
-  attackCd: 4
-  bossHpBar: {fileID: 4674551960765150281}
-  state: 0
-  bossSettings: {fileID: 11400000, guid: 4e6806827f89f9b41b191baaea740a95, type: 2}
---- !u!136 &793119093440659782
-CapsuleCollider:
+  bulletPattern1: {fileID: 11400000, guid: cb7fece701468ea4e8a11067283c6297, type: 2}
+  ProjectilePrefab: {fileID: 0}
+  radial: 0
+--- !u!114 &2647675328823478332
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5448368211132885245}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dcda8f959cd7b84fb5f99159140fc39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 0}
+  pooledObjects: []
+  countToPool: 100
+  canExpand: 1
 --- !u!1 &6440350158024470056
 GameObject:
   m_ObjectHideFlags: 0
