@@ -14,8 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossName: Boss1
   bossMaxHp: 15
+  bossSpawnYOffset: -5.3
   secondsBetweenAttacks: 5
   bulletPatterns:
-  - {fileID: 11400000, guid: cb7fece701468ea4e8a11067283c6297, type: 2}
-  - {fileID: 11400000, guid: 11c55245fb2b2ef4093815ae0c20e17a, type: 2}
-  - {fileID: 11400000, guid: 98639583e627ae849bbd8aeb91294a78, type: 2}
+  - {fileID: 11400000, guid: 80bfefecb7916fd49b385b00d5344732, type: 2}

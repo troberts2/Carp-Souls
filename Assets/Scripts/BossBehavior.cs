@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class BossBehavior : MonoBehaviour
 {
     private bool fightStarting = true;
-    private float hp;
+    internal float hp;
     public float maxHp = 15;
     public float rotationSpeed = 5f;
     public Transform player;
@@ -18,6 +18,7 @@ public class BossBehavior : MonoBehaviour
     public BossState state;
     internal BulletPatternTemplate currentPattern;
     public BossSettings bossSettings;
+    private RandomBossGen randomBossGen;
     public enum BossState{
         attacking,
         following,
@@ -27,6 +28,8 @@ public class BossBehavior : MonoBehaviour
     void Start(){
         maxHp = bossSettings.bossMaxHp;
         secondsBetweenAttacks = bossSettings.secondsBetweenAttacks;
+        player = FindObjectOfType<PlayerMovement>().transform;
+        randomBossGen = FindObjectOfType<RandomBossGen>();
         hp = maxHp;
         state = BossState.following;
         StartCoroutine(StartBattleDelay());
@@ -44,10 +47,6 @@ public class BossBehavior : MonoBehaviour
 
         }
         
-        if(hp == 0)
-        {
-            SceneManager.LoadScene("Win Scene");
-        }
     }
 
     void FollowPlayerOrientation(){
@@ -59,6 +58,7 @@ public class BossBehavior : MonoBehaviour
     void OnTriggerEnter(Collider collider){
         if(collider.CompareTag("playerBobber")){
             StartCoroutine(TakeDamage());
+            FindObjectOfType<PlayerMovement>().SprayBloodOnHit(collider.transform.position, transform.position);
         }
     }
 
@@ -66,6 +66,12 @@ public class BossBehavior : MonoBehaviour
         //change to player damage later
         hp--;
         bossHpBar.fillAmount = hp/maxHp;
+        if(hp <= 0)
+        {
+            randomBossGen.lastBoss = bossSettings;
+
+            SceneManager.LoadScene("Win Scene");
+        }
         //change later just to show its taking damage
         GetComponent<MeshRenderer>().material.color = Color.magenta;
         yield return new WaitForSeconds(0.1f);
