@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8223d6d7a4d4bf84c9253abc63ec6b52, type: 3}
-  m_Name: Pattern1
+  m_Name: Flounder Attack
   m_EditorClassIdentifier: 
-  numberOfProjectilesPerArray: 2
-  individualArraySpread: 15
-  numOfArrays: 1
-  totalArraySpread: 0
+  numberOfProjectilesPerArray: 40
+  individualArraySpread: 180
+  numOfArrays: 2
+  totalArraySpread: 180
   angleOffset: 0
   projectileSpeed: 10
   acceleration: 0
@@ -23,8 +23,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 0
+      time: -0.004386902
+      value: 0.49334717
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -32,19 +32,19 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.31425166
-      value: 0.36374664
-      inSlope: 0.03300941
-      outSlope: 0.03300941
+      time: 0.4918942
+      value: 0.9608312
+      inSlope: 0.7564848
+      outSlope: 0.7564848
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 0.5
-      inSlope: 2
-      outSlope: 2
+      value: 0.52181625
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
@@ -54,9 +54,9 @@ MonoBehaviour:
     m_RotationOrder: 4
   useCurve: 0
   attackRotateSpeed: 0
-  rotateSpeedChangeRate: 10
-  fireRate: 0.05
-  maxSpinSpeed: 140
-  repeatTime: 2
-  secondsPerAttack: 1.5
-  attackBreakTime: 3
+  rotateSpeedChangeRate: 0
+  fireRate: 0.00001
+  maxSpinSpeed: 0
+  repeatTime: 1
+  secondsPerAttack: 0.01
+  attackBreakTime: 0.5

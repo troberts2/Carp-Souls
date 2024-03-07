@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8223d6d7a4d4bf84c9253abc63ec6b52, type: 3}
-  m_Name: Ring Attack Pattern
+  m_Name: Pufferfish Spaces
   m_EditorClassIdentifier: 
-  numberOfProjectilesPerArray: 40
-  individualArraySpread: 180
-  numOfArrays: 2
-  totalArraySpread: 180
-  projectileSpeed: 10
-  acceleration: 0
+  numberOfProjectilesPerArray: 10
+  individualArraySpread: 20
+  numOfArrays: 20
+  totalArraySpread: 80
+  projectileSpeed: 8.6
+  acceleration: 0.46
   curve:
     serializedVersion: 2
     m_Curve:
@@ -31,8 +31,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.4918942
-      value: 0.9608312
+      time: 0.48383433
+      value: 1.502381
       inSlope: 0.7564848
       outSlope: 0.7564848
       tangentMode: 0
@@ -53,9 +53,9 @@ MonoBehaviour:
     m_RotationOrder: 4
   useCurve: 0
   attackRotateSpeed: 0
-  rotateSpeedChangeRate: 0
-  fireRate: 0.00001
-  maxSpinSpeed: 0
+  rotateSpeedChangeRate: 3.05
+  fireRate: 0.23
+  maxSpinSpeed: 1.2
   repeatTime: 1
   secondsPerAttack: 0.01
   attackBreakTime: 0.5
