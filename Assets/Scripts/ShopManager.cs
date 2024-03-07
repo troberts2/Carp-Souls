@@ -20,21 +20,12 @@ public class ShopManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI item3;
 
     //Update texts
-    [SerializeField] private string[] itemTexts;
-    [SerializeField] private int[] itemCosts;
+    [SerializeField] private TextMeshProUGUI[] itemTexts;
     [SerializeField] private TextMeshProUGUI fishBucksText;
     [SerializeField] private TextMeshProUGUI beerCostText;
-
     [SerializeField] private TextMeshProUGUI item1CostText;
     [SerializeField] private TextMeshProUGUI item2CostText;
     [SerializeField] private TextMeshProUGUI item3CostText;
-
-    [SerializeField] private TextMeshProUGUI item1Description;
-    [SerializeField] private TextMeshProUGUI item2Description;
-    [SerializeField] private TextMeshProUGUI item3Description;
-
-    private string chosenText;
-    private int chosenCost;
 
     private string item;
 
@@ -63,26 +54,14 @@ public class ShopManager : MonoBehaviour
             {
                 case 0:
                     shopItems[i] = rodItems[Random.Range(0, rodItems.Length)];
-                    ChooseText(shopItems[i]);
-                    ChooseCost(shopItems[i]);
-                    item1CostText.text = chosenCost.ToString();
-                    item1Description.text = chosenText;
                     break;
                 case 1:
                     shopItems[i] = gearItems[Random.Range(0, gearItems.Length)];
-                    ChooseText(shopItems[i]);
-                    ChooseCost(shopItems[i]);
-                    item2CostText.text = chosenCost.ToString();
-                    item2Description.text = chosenText;
                     break;
                 case 2:
                     totalItems.Remove(shopItems[0]);
                     totalItems.Remove(shopItems[1]);
                     shopItems[i] = totalItems.ToArray()[Random.Range(0, totalItems.ToArray().Length)];
-                    ChooseText(shopItems[i]);
-                    ChooseCost(shopItems[i]);
-                    item3CostText.text = chosenCost.ToString();
-                    item3Description.text = chosenText;
                     break;
             }
             i++;
@@ -104,6 +83,11 @@ public class ShopManager : MonoBehaviour
         {
             Beer();
         }
+        
+        if (gameObject.activeInHierarchy)
+        {
+            TextUpdates();
+        }
         if (fishBucksText != null)
         {
             fishBucksText.text = "Fish Bucks: " + fishBucks;
@@ -118,7 +102,6 @@ public class ShopManager : MonoBehaviour
     public void ItemSelected()
     {
         item = UnityEngine.EventSystems.EventSystem.current.currentSelectedGameObject.GetComponentInChildren<TextMeshProUGUI>().text;
-
         ItemEffect();
     }
 
@@ -154,62 +137,14 @@ public class ShopManager : MonoBehaviour
         }
     }
 
-
-    private void ChooseText(string item)
+    private void TextUpdates()
     {
-        if (item == "Steel Rod")
+        foreach (TextMeshProUGUI text in itemTexts)
         {
-            chosenText = itemTexts[0];
-        }
-        if (item == "Ultralight Rod")
-        {
-            chosenText = itemTexts[1];
-        }
-        if (item == "Fling Rod")
-        {
-            chosenText = itemTexts[2];
-        }
-        if (item == "Rain Boots")
-        {
-            chosenText = itemTexts[3];
-        }
-        if (item == "Pine Tree")
-        {
-            chosenText = itemTexts[4];
-        }
-        if (item == "Catsup")
-        {
-            chosenText = itemTexts[5];
-        }
+            if (text != null)
+            {
 
-        //Debug.Log(chosenText);
-    }
-
-    private void ChooseCost(string item)
-    {
-        if (item == "Steel Rod")
-        {
-            chosenCost = itemCosts[0];
-        }
-        if (item == "Ultralight Rod")
-        {
-            chosenCost = itemCosts[1];
-        }
-        if (item == "Fling Rod")
-        {
-            chosenCost = itemCosts[2];
-        }
-        if (item == "Rain Boots")
-        {
-            chosenCost = itemCosts[3];
-        }
-        if (item == "Pine Tree")
-        {
-            chosenCost = itemCosts[4];
-        }
-        if (item == "Catsup")
-        {
-            chosenCost = itemCosts[5];
+            }
         }
     }
 
