@@ -43,8 +43,6 @@ public class BossAttacks : MonoBehaviour
 
         bossMat = GetComponent<MeshRenderer>().material;
         bossCol = bossMat.color;
-
-        StartCoroutine(ChooseAttack());
         repetitions = 0;
     }
 
@@ -92,11 +90,12 @@ public class BossAttacks : MonoBehaviour
             i++;
 
             Instantiate(hydroAttack);
-            hydroAttack.transform.position = transform.GetChild(1).position; //temporary use of Mouth child
-            transform.GetChild(1).DetachChildren();
+            hydroAttack.transform.position = transform.position; //temporary use of Mouth child
+ 
 
             yield return new WaitForSeconds(1);
         }
+        bb.state = BossBehavior.BossState.following;
     }
 
     IEnumerator Beam()
@@ -152,8 +151,9 @@ public class BossAttacks : MonoBehaviour
         }
     }
 
-    IEnumerator ChooseAttack()
+    public void ChooseAttack()
     {
+        bb.state = BossBehavior.BossState.attacking;
         if (Vector3.Distance(transform.position, player.transform.position) < spinTriggerDistance)
         {
             //Debug.Log(Vector3.Distance(transform.position, player.transform.position));
@@ -202,8 +202,6 @@ public class BossAttacks : MonoBehaviour
             }
         }
 
-        yield return new WaitForSeconds(attackTimer);
 
-        StartCoroutine(ChooseAttack());
     }
 }
