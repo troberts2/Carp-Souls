@@ -329,6 +329,17 @@ public partial class @DefaultInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""bf28507c-f9d8-4122-8a2e-9e32799f1b97"",
+                    ""path"": ""<HID::Shaul Eizikovich vJoy - Virtual Joystick>/button2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""9ef627dd-5850-4855-aa11-b929b4082c2c"",
                     ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
@@ -345,6 +356,17 @@ public partial class @DefaultInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse;Gamepad"",
+                    ""action"": ""LockToEnemy"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ee34567a-ac2c-4301-8710-8235261df054"",
+                    ""path"": ""<HID::Shaul Eizikovich vJoy - Virtual Joystick>/button6"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
                     ""action"": ""LockToEnemy"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -1085,6 +1107,17 @@ public partial class @DefaultInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse;Gamepad"",
+                    ""action"": ""Fish"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8366c5dc-47bc-408f-bad4-8bb59f1bb725"",
+                    ""path"": ""<HID::Shaul Eizikovich vJoy - Virtual Joystick>/button3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
                     ""action"": ""Fish"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
