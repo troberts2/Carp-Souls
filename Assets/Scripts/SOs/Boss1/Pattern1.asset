@@ -16,6 +16,7 @@ MonoBehaviour:
   individualArraySpread: 15
   numOfArrays: 1
   totalArraySpread: 0
+  angleOffset: 0
   projectileSpeed: 10
   acceleration: 0
   curve:
@@ -58,4 +59,4 @@ MonoBehaviour:
   maxSpinSpeed: 140
   repeatTime: 2
   secondsPerAttack: 1.5
-  attackBreakTime: 0.5
+  attackBreakTime: 3

@@ -49,6 +49,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Drink",
+                    "type": "Button",
+                    "id": "49cc3c33-8700-4fa8-b8f6-1c4cb3833275",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -307,17 +316,6 @@
                 },
                 {
                     "name": "",
-                    "id": "bf28507c-f9d8-4122-8a2e-9e32799f1b97",
-                    "path": "<HID::Shaul Eizikovich vJoy - Virtual Joystick>/button2",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Dash",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "9ef627dd-5850-4855-aa11-b929b4082c2c",
                     "path": "<Gamepad>/rightTrigger",
                     "interactions": "",
@@ -340,12 +338,23 @@
                 },
                 {
                     "name": "",
-                    "id": "ee34567a-ac2c-4301-8710-8235261df054",
-                    "path": "<HID::Shaul Eizikovich vJoy - Virtual Joystick>/button6",
+                    "id": "60f50fe7-0aac-4075-a3ca-e55e09609b2c",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "LockToEnemy",
+                    "groups": "Gamepad;Keyboard&Mouse",
+                    "action": "Drink",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d315b960-69c9-4d55-b07d-5d892150ea9e",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse;Gamepad",
+                    "action": "Drink",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -1085,17 +1094,6 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse;Gamepad",
-                    "action": "Fish",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "8366c5dc-47bc-408f-bad4-8bb59f1bb725",
-                    "path": "<HID::Shaul Eizikovich vJoy - Virtual Joystick>/button3",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
                     "action": "Fish",
                     "isComposite": false,
                     "isPartOfComposite": false

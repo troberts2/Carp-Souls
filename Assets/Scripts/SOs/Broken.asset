@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8223d6d7a4d4bf84c9253abc63ec6b52, type: 3}
+  m_Name: Broken
+  m_EditorClassIdentifier: 
+  numberOfProjectilesPerArray: 5
+  individualArraySpread: 20
+  numOfArrays: 40
+  totalArraySpread: 20
+  projectileSpeed: 0.8
+  acceleration: 0.6
+  curve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0.103889465
+      value: 0.041641235
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.5032216
+      value: 1.8992462
+      inSlope: 0.000022502567
+      outSlope: 0.000022502567
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.37948135
+    - serializedVersion: 3
+      time: 1.0024734
+      value: -1.8916769
+      inSlope: 0.22878459
+      outSlope: 0.22878459
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.4972543
+    - serializedVersion: 3
+      time: 1.3998871
+      value: -0.019565582
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  useCurve: 1
+  attackRotateSpeed: 0.29
+  rotateSpeedChangeRate: 1.65
+  fireRate: 3.22
+  maxSpinSpeed: 3.26
+  repeatTime: 5
+  secondsPerAttack: 0.95
+  attackBreakTime: 0.5

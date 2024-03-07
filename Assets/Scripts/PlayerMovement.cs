@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Animations.Rigging;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -34,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
     public Transform orientation;
     public Transform playerObj;
     public Material playerMaterial;
+    public ParticleSystem bloodSpray;
 
     float horizontalInput;
     float verticalInput;
@@ -50,10 +52,16 @@ public class PlayerMovement : MonoBehaviour
         walking,
         dashing,
         attacking,
+        drinking,
+        stunned,
         air
     }
 
     public bool dashing;
+    public bool drinking;
+    [SerializeField] private int drinksLeft = 3;
+    internal float drinkingCd;
+    [SerializeField] private float timeBetweenDrinks = 3f;
     public bool iFrames = false;
     public float maxHp = 3f;
     private float hp;
@@ -61,12 +69,31 @@ public class PlayerMovement : MonoBehaviour
     //Input Actions
     public DefaultInputActions playerInput;
     private InputAction move;
+    private InputAction drink;
+
+    //Player animations
+    private Animator animator;
+    private static readonly int Idle = Animator.StringToHash("Idle");
+    private static readonly int Walk = Animator.StringToHash("Run");
+    private static readonly int Attack = Animator.StringToHash("Attack");
+    private static readonly int Dash = Animator.StringToHash("Roll");
+    private static readonly int Drink = Animator.StringToHash("Drinking");
+    private static readonly int LeftStrafe = Animator.StringToHash("LeftStrafe");
+    private static readonly int RightStrafe = Animator.StringToHash("RightStrafe");
+    private static readonly int Hit = Animator.StringToHash("Hit");
+    [SerializeField] private float _dashAnimTime = 0.5f;
+    [SerializeField] private float _attackAnimTime = 1f;
+    [SerializeField] private float _drinkingAnimTime = 2f;
+    [SerializeField] private float _hitStunTime = 1f;
+    [SerializeField] private TwoBoneIKConstraint leftHand;
+    private float _lockedTill;
 
 
     private void Start()
     {
         attack = GetComponent<FishingRodAttack>();
         rb = GetComponent<Rigidbody>();
+        animator = transform.GetChild(0).GetChild(0).GetComponent<Animator>();
         rb.freezeRotation = true;
         hp = maxHp;
 
@@ -83,6 +110,8 @@ public class PlayerMovement : MonoBehaviour
         SpeedControl();
         StateHandler();
 
+        if(drinkingCd > 0) drinkingCd -= Time.deltaTime;
+
         // handle drag
         if (state == MovementState.walking)
             rb.drag = groundDrag;
@@ -93,6 +122,14 @@ public class PlayerMovement : MonoBehaviour
         {
             SceneManager.LoadScene("Loss Scene");
         }
+        //animator stuff
+        var animState = GetState();
+
+
+        if (animState == _currentState) return;
+        animator.CrossFade(animState, .25f, 0);
+        _currentState = animState;
+        
     }
 
     private void FixedUpdate()
@@ -108,8 +145,13 @@ public class PlayerMovement : MonoBehaviour
     private void StateHandler()
     {
         playerHpBar.fillAmount = hp/maxHp;
+        //Mode - Hit
+        if(iFrames && !dashing){
+            state = MovementState.stunned;
+            desiredMoveSpeed = 0;
+        }
         // Mode - Dashing
-        if (dashing)
+        else if (dashing)
         {
             state = MovementState.dashing;
             desiredMoveSpeed = dashSpeed;
@@ -121,6 +163,11 @@ public class PlayerMovement : MonoBehaviour
         else if(attack.freezePlayer){
             state = MovementState.attacking;
             desiredMoveSpeed = 0;
+        }
+        //Mode = drink/heal
+        else if(drinking){
+            state = MovementState.drinking;
+            desiredMoveSpeed = walkSpeed * .2f;
         }
 
 
@@ -166,6 +213,46 @@ public class PlayerMovement : MonoBehaviour
 
         lastDesiredMoveSpeed = desiredMoveSpeed;
         lastState = state;
+    }
+    private int _currentState;
+    private int GetState() {
+        if (Time.time < _lockedTill) return _currentState;
+
+        // Priorities
+        if(iFrames && !dashing) return LockState(Hit, _hitStunTime);
+        if (state == MovementState.dashing) return LockState(Dash, _dashAnimTime);
+        if (attack.freezePlayer) return LockState(Attack, _attackAnimTime);
+        if(drinking) return LockState(Drink, _drinkingAnimTime);
+        if(move.ReadValue<Vector2>() == Vector2.zero){
+            return Idle;
+        }else{
+            if(lockRotation){
+                if(move.ReadValue<Vector2>().x < 0) return LeftStrafe;
+                else if(move.ReadValue<Vector2>().x > 0) return RightStrafe;
+                else return Walk;
+            }else{
+                return Walk;
+            }
+        }
+
+        int LockState(int s, float t) {
+            _lockedTill = Time.time + t;
+            return s;
+        }
+    }
+    private void HaveADrink(InputAction.CallbackContext callbackContext){
+        if(!drinking && drinksLeft > 0 && drinkingCd <= 0 && state != MovementState.dashing && state != MovementState.attacking){
+            leftHand.weight = 0;
+            drinksLeft--;
+            drinking = true;
+            drinkingCd = timeBetweenDrinks;
+            Invoke(nameof(ResetDrink), _drinkingAnimTime);
+        }
+    }
+    private void ResetDrink(){
+        leftHand.weight = 1;
+        drinking = false;
+        hp++;
     }
 
     private float speedChangeFactor;
@@ -230,34 +317,38 @@ public class PlayerMovement : MonoBehaviour
     }
     void OnCollisionEnter(Collision other){
         if((other.collider.CompareTag("EnemyAttack") || other.collider.CompareTag("Enemy"))){
-            if(!iFrames) StartCoroutine(TakeDamage());
+            if(!iFrames){
+                hp--;
+                iFrames = true;
+                Invoke(nameof(ResetIframes), _hitStunTime - .01f);
+            } 
         }
     }
-    IEnumerator TakeDamage(){
-        //change to boss damage later
-        hp--;
-        iFrames = true;
-        //change later just to show its taking damage
-        transform.GetChild(1).GetComponent<MeshRenderer>().material.color = Color.magenta;
-        yield return new WaitForSeconds(0.1f);
-        transform.GetChild(1).GetComponent<MeshRenderer>().material.color = Color.yellow;
-        yield return new WaitForSeconds(1f);
+    void ResetIframes(){
         iFrames = false;
-
-        yield return new WaitForSeconds(2.5f);
-
+    }
+    public void SprayBloodOnHit(Vector3 bobberPos, Vector3 bossPos){
+        bloodSpray.transform.position = bobberPos;
+        Vector3 dirVec = (bobberPos - bossPos).normalized;
+        bloodSpray.transform.LookAt(dirVec, Vector3.forward);
+        bloodSpray.Play();
     }
     private void OnEnable() {
         
         move = playerInput.Player.Move;
 
         move.Enable();
+
+        drink = playerInput.Player.Drink;
+        drink.Enable();
+        drink.performed += HaveADrink;
         
     }
     private void OnDisable() {
 
 
         move.Disable();
+        drink.Disable();
 
     }
 

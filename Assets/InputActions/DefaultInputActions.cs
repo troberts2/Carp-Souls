@@ -71,6 +71,15 @@ public partial class @DefaultInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Drink"",
+                    ""type"": ""Button"",
+                    ""id"": ""49cc3c33-8700-4fa8-b8f6-1c4cb3833275"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -329,17 +338,6 @@ public partial class @DefaultInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""bf28507c-f9d8-4122-8a2e-9e32799f1b97"",
-                    ""path"": ""<HID::Shaul Eizikovich vJoy - Virtual Joystick>/button2"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Dash"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""9ef627dd-5850-4855-aa11-b929b4082c2c"",
                     ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
@@ -362,12 +360,23 @@ public partial class @DefaultInputActions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""ee34567a-ac2c-4301-8710-8235261df054"",
-                    ""path"": ""<HID::Shaul Eizikovich vJoy - Virtual Joystick>/button6"",
+                    ""id"": ""60f50fe7-0aac-4075-a3ca-e55e09609b2c"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""LockToEnemy"",
+                    ""groups"": ""Gamepad;Keyboard&Mouse"",
+                    ""action"": ""Drink"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d315b960-69c9-4d55-b07d-5d892150ea9e"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse;Gamepad"",
+                    ""action"": ""Drink"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1110,17 +1119,6 @@ public partial class @DefaultInputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Fish"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""8366c5dc-47bc-408f-bad4-8bb59f1bb725"",
-                    ""path"": ""<HID::Shaul Eizikovich vJoy - Virtual Joystick>/button3"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Fish"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1195,6 +1193,7 @@ public partial class @DefaultInputActions: IInputActionCollection2, IDisposable
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_LockToEnemy = m_Player.FindAction("LockToEnemy", throwIfNotFound: true);
+        m_Player_Drink = m_Player.FindAction("Drink", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1277,6 +1276,7 @@ public partial class @DefaultInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_Dash;
     private readonly InputAction m_Player_LockToEnemy;
+    private readonly InputAction m_Player_Drink;
     public struct PlayerActions
     {
         private @DefaultInputActions m_Wrapper;
@@ -1286,6 +1286,7 @@ public partial class @DefaultInputActions: IInputActionCollection2, IDisposable
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
         public InputAction @LockToEnemy => m_Wrapper.m_Player_LockToEnemy;
+        public InputAction @Drink => m_Wrapper.m_Player_Drink;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1310,6 +1311,9 @@ public partial class @DefaultInputActions: IInputActionCollection2, IDisposable
             @LockToEnemy.started += instance.OnLockToEnemy;
             @LockToEnemy.performed += instance.OnLockToEnemy;
             @LockToEnemy.canceled += instance.OnLockToEnemy;
+            @Drink.started += instance.OnDrink;
+            @Drink.performed += instance.OnDrink;
+            @Drink.canceled += instance.OnDrink;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1329,6 +1333,9 @@ public partial class @DefaultInputActions: IInputActionCollection2, IDisposable
             @LockToEnemy.started -= instance.OnLockToEnemy;
             @LockToEnemy.performed -= instance.OnLockToEnemy;
             @LockToEnemy.canceled -= instance.OnLockToEnemy;
+            @Drink.started -= instance.OnDrink;
+            @Drink.performed -= instance.OnDrink;
+            @Drink.canceled -= instance.OnDrink;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1570,6 +1577,7 @@ public partial class @DefaultInputActions: IInputActionCollection2, IDisposable
         void OnFire(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnLockToEnemy(InputAction.CallbackContext context);
+        void OnDrink(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
