@@ -63,7 +63,7 @@ public class QTESystem : MonoBehaviour
 
         if (started == true)
         {
-            QTEStatus.text = "Reel in your catch by mashing the A button.";
+            QTEStatus.text = "Reel in your catch by mashing the X button.";
             text.SetActive(true);
             mash -= Time.deltaTime;
 
@@ -77,7 +77,7 @@ public class QTESystem : MonoBehaviour
             ///}
             if (mash <= 0 && mashCount < mashQuota)
             {
-                QTEStatus.text = "Fish Fled. Press A to Try Again";
+                QTEStatus.text = "Fish Fled. Press X to Try Again";
                 started = false;
             }
             else if (mash <= 0 && mashCount >= mashQuota)
