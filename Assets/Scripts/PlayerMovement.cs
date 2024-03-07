@@ -188,19 +188,22 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //Mode - Menu/Shop
-        if (shop.activeInHierarchy)
+        if (shop != null)
         {
-            state = MovementState.menu;
-            desiredMoveSpeed = 0;
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.Confined;
-            //prevent player model turning
-            //freeze cinemachine camera
-        }
-        else
-        {
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
+            if (shop.activeInHierarchy)
+            {
+                state = MovementState.menu;
+                desiredMoveSpeed = 0;
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.Confined;
+                //prevent player model turning
+                //freeze cinemachine camera
+            }
+            else
+            {
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+            }
         }
 
         if (!iFrames){
