@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
-    private float moveSpeed;
+    public float moveSpeed;
     public float walkSpeed;
 
     public float dashSpeed;
@@ -50,18 +50,20 @@ public class PlayerMovement : MonoBehaviour
         walking,
         dashing,
         attacking,
-        air
+        air,
+        menu
     }
 
     public bool dashing;
     public bool iFrames = false;
     public float maxHp = 3f;
-    private float hp;
+    public float hp;
     public Image playerHpBar;
     //Input Actions
     public DefaultInputActions playerInput;
     private InputAction move;
 
+    [SerializeField] private GameObject shop;
 
     private void Start()
     {
@@ -140,7 +142,23 @@ public class PlayerMovement : MonoBehaviour
             desiredMoveSpeed = walkSpeed;
         }
 
-        if(!iFrames){
+        //Mode - Menu/Shop
+        if (shop.activeInHierarchy)
+        {
+            state = MovementState.menu;
+            desiredMoveSpeed = 0;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
+            //prevent player model turning
+            //freeze cinemachine camera
+        }
+        else
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+
+        if (!iFrames){
             Physics.IgnoreLayerCollision (3, 9, false);
         }
         else{
