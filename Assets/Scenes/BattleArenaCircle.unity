@@ -473,7 +473,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 75250041}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.13870123, y: 0.000000014757133, z: -0.0000000020668085, w: 0.9903343}
+  m_LocalRotation: {x: 0.13870123, y: 0.0000000147571315, z: -0.0000000020668085,
+    w: 0.9903343}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6258,7 +6259,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 516846339}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.1387012, y: -0.000000014757133, z: 0.0000000020668092, w: 0.99033433}
+  m_LocalRotation: {x: 0.1387012, y: 0.000000014757133, z: -0.0000000020668092, w: 0.99033433}
   m_LocalPosition: {x: 0, y: 2, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6832,7 +6833,7 @@ PrefabInstance:
     - target: {fileID: 5448368211132885245, guid: ef7c7ab9515bd884a8b6565e8babc4cd,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5448368211132885245, guid: ef7c7ab9515bd884a8b6565e8babc4cd,
         type: 3}
@@ -7336,7 +7337,7 @@ MonoBehaviour:
   attackCd: 4
   bossHpBar: {fileID: 1242862164}
   state: 0
-  bossSettings: {fileID: 11400000, guid: 99435438c4c16fd449fe8bde85938b6b, type: 2}
+  bossSettings: {fileID: 11400000, guid: 4e6806827f89f9b41b191baaea740a95, type: 2}
 --- !u!136 &731462131
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -8083,8 +8084,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1057327779}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000034632543, y: 0.6091395, z: -0.79306316, w: 0.000046756584}
-  m_LocalPosition: {x: -0.17150158, y: 3.2777166, z: 1.5750015}
+  m_LocalRotation: {x: 0.00008450535, y: 0.60913944, z: -0.79306316, w: 0.00011408869}
+  m_LocalPosition: {x: -0.17153125, y: 3.2777147, z: 1.5750005}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9761,7 +9762,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1402607329}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.09252107, y: 0.000000023834037, z: -0.0000000022146478, w: 0.9957108}
+  m_LocalRotation: {x: 0.09252107, y: 0.000000029602571, z: -0.0000000027506575, w: 0.9957108}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -12302,6 +12303,12 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8773204104994817535, guid: 9ac9879c912ca3248a3eee4a79cae79d,
+        type: 3}
+      propertyPath: bossSettings
+      value: 
+      objectReference: {fileID: 11400000, guid: 7b63278822e36ed4baa448d99402c3f6,
+        type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
