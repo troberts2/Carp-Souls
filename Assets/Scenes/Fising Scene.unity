@@ -641,7 +641,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64714f90b5ce040469d14ee2fee3b192, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0
   walkSpeed: 7
   dashSpeed: 20
   dashSpeedChangeFactor: 50
@@ -663,13 +662,11 @@ MonoBehaviour:
   timeBetweenDrinks: 3
   iFrames: 0
   maxHp: 3
-  hp: 0
   playerHpBar: {fileID: 1877821268}
   _dashAnimTime: 0.3
   _attackAnimTime: 0.2
   _drinkingAnimTime: 1
   _hitStunTime: 1
-  shop: {fileID: 0}
 --- !u!114 &172011932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1762,8 +1759,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 464471706}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.13870123, y: -0.0000000147571315, z: 0.0000000020668085,
-    w: 0.9903343}
+  m_LocalRotation: {x: 0.13870123, y: 0.000000014757132, z: -0.0000000020668087, w: 0.9903343}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2289,8 +2285,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 848514922}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.13870123, y: -0.0000000147571315, z: 0.0000000020668085,
-    w: 0.9903343}
+  m_LocalRotation: {x: 0.13870125, y: 0.000000029514263, z: -0.000000004133617, w: 0.9903343}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2475,7 +2470,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1063818958}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.09252107, y: 0.000000007174313, z: -6.6663386e-10, w: 0.9957108}
+  m_LocalRotation: {x: 0.09252107, y: 0.000000044511744, z: -0.000000004136011, w: 0.9957108}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3433,9 +3428,9 @@ MonoBehaviour:
   m_LookaheadTime: 0
   m_LookaheadSmoothing: 0
   m_LookaheadIgnoreY: 0
-  m_XDamping: 1
-  m_YDamping: 1
-  m_ZDamping: 1
+  m_XDamping: 0
+  m_YDamping: 0
+  m_ZDamping: 0
   m_TargetMovementOnly: 1
   m_ScreenX: 0.5
   m_ScreenY: 0.5
@@ -4341,8 +4336,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2077113272}
   serializedVersion: 2
-  m_LocalRotation: {x: 3.944307e-10, y: 0.94564164, z: -0.32521063, w: 0.0000000074442865}
-  m_LocalPosition: {x: -0.17148182, y: -0.23335218, z: 12.038743}
+  m_LocalRotation: {x: -0.0000000010026296, y: 0.9456416, z: -0.32521066, w: -0.000000018923155}
+  m_LocalPosition: {x: -0.17148091, y: -0.23334408, z: 12.038756}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
