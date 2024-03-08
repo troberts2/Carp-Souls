@@ -10,8 +10,8 @@ public class ShopManager : MonoBehaviour
     static private int fishBucks;
     private int beerCost;
 
-    private float bootSpeed;
-    private int bootGain;
+    private float bootSpeedMultiplier = 1.5f;
+    private int bootGain = 2;
 
     [SerializeField] private GameObject loadout;
  
@@ -138,7 +138,8 @@ public class ShopManager : MonoBehaviour
         }
         if (item == "Rain Boots")
         {
-            bootSpeed += bootGain;
+            pm.walkSpeed += bootSpeedMultiplier;
+            bootSpeedMultiplier += bootGain;
             //move spd increase in water
             //move spd increase + dash
         }
@@ -218,7 +219,8 @@ public class ShopManager : MonoBehaviour
         if (beerCost <= fishBucks)
         {
             fishBucks -= beerCost;
-            pm.hp = pm.maxHp;
+            //pm.hp = pm.maxHp;
+            pm.drinksLeft++;
             beerCost += 2;
         }
         else
