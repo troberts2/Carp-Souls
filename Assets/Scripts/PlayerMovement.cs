@@ -60,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
 
     public bool dashing;
     public bool drinking;
-    [SerializeField] private int drinksLeft = 3;
+    public int drinksLeft = 3;
     internal float drinkingCd;
     [SerializeField] private float timeBetweenDrinks = 3f;
     public bool iFrames = false;
@@ -131,7 +131,6 @@ public class PlayerMovement : MonoBehaviour
         if (animState == _currentState) return;
         animator.CrossFade(animState, .25f, 0);
         _currentState = animState;
-        
     }
 
     private void FixedUpdate()
@@ -262,13 +261,13 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     private void HaveADrink(InputAction.CallbackContext callbackContext){
-        if(!drinking && drinksLeft > 0 && drinkingCd <= 0 && state != MovementState.dashing && state != MovementState.attacking){
-            leftHand.weight = 0;
-            drinksLeft--;
-            drinking = true;
-            drinkingCd = timeBetweenDrinks;
-            Invoke(nameof(ResetDrink), _drinkingAnimTime);
-        }
+        //if(!drinking && drinksLeft > 0 && drinkingCd <= 0 && state != MovementState.dashing && state != MovementState.attacking){
+        //    leftHand.weight = 0;
+        //    drinksLeft--;
+        //    drinking = true;
+        //    drinkingCd = timeBetweenDrinks;
+        //    Invoke(nameof(ResetDrink), _drinkingAnimTime);
+        //}
     }
     private void ResetDrink(){
         leftHand.weight = 1;

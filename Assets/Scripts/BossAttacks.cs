@@ -25,6 +25,9 @@ public class BossAttacks : MonoBehaviour
     private int repeatCheck;
     private int repetitions;
 
+    public bool doubleWave;
+    public bool tripleWave;
+
     private Material bossMat;
     private Color bossCol;
 
@@ -71,6 +74,20 @@ public class BossAttacks : MonoBehaviour
         
         transform.position = startPos;
         Instantiate(waveAttack);
+
+        if (tripleWave)
+        {
+            yield return new WaitForSeconds(3);
+            Instantiate(waveAttack);
+            yield return new WaitForSeconds(3);
+            Instantiate(waveAttack);
+        }
+        else if (doubleWave)
+        {
+            yield return new WaitForSeconds(2);
+            Instantiate(waveAttack);
+        }
+
 
         bb.state = BossBehavior.BossState.following;
     }
@@ -128,7 +145,7 @@ public class BossAttacks : MonoBehaviour
 
         while (t < spinTime)
         {
-            t++;
+            t += Time.deltaTime;
             transform.Rotate(spinSpeed * rotateDirection * Time.deltaTime);
             yield return null;
         }
