@@ -24,7 +24,8 @@ public class RandomBossGen : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
     public void SpawnBossRandom(){
-        if(SceneManager.GetActiveScene().name == "ArenaTest"){
+        if(SceneManager.GetActiveScene().name == "ArenaTest"||SceneManager.GetActiveScene().name == "BattleArenaCircle")
+        {
             if(bossList.Length > 0){
                 GameObject bossToSpawn = bossList[Random.Range(0, bossList.Length)];
                 while(bossToSpawn.GetComponent<BossBehavior>().bossSettings == lastBoss){

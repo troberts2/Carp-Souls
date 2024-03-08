@@ -19,6 +19,7 @@ public class BossBehavior : MonoBehaviour
     internal BulletPatternTemplate currentPattern;
     public BossSettings bossSettings;
     private RandomBossGen randomBossGen;
+    private BossAttacks bossAttacks;
     public enum BossState{
         attacking,
         following,
@@ -30,13 +31,27 @@ public class BossBehavior : MonoBehaviour
         secondsBetweenAttacks = bossSettings.secondsBetweenAttacks;
         player = FindObjectOfType<PlayerMovement>().transform;
         randomBossGen = FindObjectOfType<RandomBossGen>();
+        bossAttacks = GetComponent<BossAttacks>();
         hp = maxHp;
         state = BossState.following;
         StartCoroutine(StartBattleDelay());
     }
     void Update(){
         if (attackCdTimer > 0) attackCdTimer -= Time.deltaTime;
-        else if(!fightStarting) Attack();
+        else if(!fightStarting){
+            if(bossAttacks != null && GetComponent<RadialBullets>() != null){
+                if(Random.Range(0, 100) > 50){
+                    Attack();
+                }else{
+                    bossAttacks.ChooseAttack();
+                }
+            }else if(bossAttacks != null){
+                bossAttacks.ChooseAttack();
+            }else if(GetComponent<RadialBullets>() != null){
+                Attack();
+            }
+
+        }
 
         if(state == BossState.following) FollowPlayerOrientation();
 

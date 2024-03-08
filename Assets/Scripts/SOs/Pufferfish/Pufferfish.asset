@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pufferfish
   m_EditorClassIdentifier: 
   bossName: Pufferfish
-  bossMaxHp: 40
+  bossMaxHp: 4
   bossSpawnYOffset: 0
   secondsBetweenAttacks: 4
   bulletPatterns:

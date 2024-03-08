@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.Animations.Rigging;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -84,6 +85,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _attackAnimTime = 1f;
     [SerializeField] private float _drinkingAnimTime = 2f;
     [SerializeField] private float _hitStunTime = 1f;
+    [SerializeField] private TwoBoneIKConstraint leftHand;
     private float _lockedTill;
 
 
@@ -240,6 +242,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void HaveADrink(InputAction.CallbackContext callbackContext){
         if(!drinking && drinksLeft > 0 && drinkingCd <= 0 && state != MovementState.dashing && state != MovementState.attacking){
+            leftHand.weight = 0;
             drinksLeft--;
             drinking = true;
             drinkingCd = timeBetweenDrinks;
@@ -247,6 +250,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     private void ResetDrink(){
+        leftHand.weight = 1;
         drinking = false;
         hp++;
     }

@@ -8,6 +8,7 @@ TagManager:
   - playerBobber
   - EnemyAttack
   - Ground
+  - Fishable
   layers:
   - Default
   - TransparentFX

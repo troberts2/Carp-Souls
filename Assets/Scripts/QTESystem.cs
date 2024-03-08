@@ -9,6 +9,9 @@ public class QTESystem : MonoBehaviour
 {
     private DefaultInputActions playerInput;
     private InputAction fishing;
+    public GameObject Player;
+
+    public bool onFishableLand = false;
 
     public float mashDelay = .5f;
     public GameObject text;
@@ -48,17 +51,19 @@ public class QTESystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (fishing.IsPressed() && started == false)
+        if (fishing.IsPressed() && started == false && onFishableLand == true)
         {
             mashCount = 0;
             mash = 5;
             started = true;
             FishingPromt.SetActive(false);
+            Player.GetComponent<PlayerMovement>().enabled = false;
+            Player.GetComponent<Dashing>().enabled = false;
         }
 
         if (started == true)
         {
-            QTEStatus.text = "Reel in your catch by mashing the A button.";
+            QTEStatus.text = "Reel in your catch by mashing the X button.";
             text.SetActive(true);
             mash -= Time.deltaTime;
 
@@ -72,7 +77,7 @@ public class QTESystem : MonoBehaviour
             ///}
             if (mash <= 0 && mashCount < mashQuota)
             {
-                QTEStatus.text = "Fish Fled. Press A to Try Again";
+                QTEStatus.text = "Fish Fled. Press X to Try Again";
                 started = false;
             }
             else if (mash <= 0 && mashCount >= mashQuota)
@@ -80,6 +85,19 @@ public class QTESystem : MonoBehaviour
                 QTEStatus.text = "Fish Caught?";
                 FindObjectOfType<LevelLoader>().LoadNextLevel();
             }
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            onFishableLand = false;
+        }
+        if (collision.gameObject.CompareTag("Fishable"))
+        {
+            onFishableLand = true;
+            
         }
     }
 }
