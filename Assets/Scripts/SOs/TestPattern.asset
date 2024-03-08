@@ -43,7 +43,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  useCurve: 1
+  useCurve: 0
   attackRotateSpeed: 30
   rotateSpeedChangeRate: 0
   fireRate: 0.01

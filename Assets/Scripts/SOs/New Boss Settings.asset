@@ -17,4 +17,4 @@ MonoBehaviour:
   bossSpawnYOffset: 3
   secondsBetweenAttacks: 5
   bulletPatterns:
-  - {fileID: 11400000, guid: 80bfefecb7916fd49b385b00d5344732, type: 2}
+  - {fileID: 11400000, guid: c9b2d1cd898f768468f8c1d30eb497e0, type: 2}
