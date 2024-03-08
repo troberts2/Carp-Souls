@@ -649,7 +649,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 158021727}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.09252107, y: 0.000000007174313, z: -6.6663386e-10, w: 0.9957108}
+  m_LocalRotation: {x: 0.09252107, y: -4.1074533e-10, z: 3.8165988e-11, w: 0.9957108}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1650,8 +1650,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 547427622}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.13870123, y: -0.0000000147571315, z: 0.0000000020668085,
-    w: 0.9903343}
+  m_LocalRotation: {x: 0.13870123, y: -0.000000014757133, z: 0.0000000020668085, w: 0.9903343}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7761,8 +7760,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1052000816}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.00000671454, y: 0.6091395, z: -0.79306316, w: -0.000009065143}
-  m_LocalPosition: {x: -0.17147775, y: 3.2777205, z: 1.5750024}
+  m_LocalRotation: {x: 0.0000016073056, y: 0.6091395, z: -0.79306316, w: 0.000002169986}
+  m_LocalPosition: {x: -0.1714822, y: 3.2777205, z: 1.5750024}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8023,7 +8022,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1157086573}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.1387012, y: -0.000000014757133, z: 0.0000000020668092, w: 0.99033433}
+  m_LocalRotation: {x: 0.1387012, y: 0.000000014757133, z: -0.0000000020668092, w: 0.99033433}
   m_LocalPosition: {x: 0, y: 2, z: 16.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9784,7 +9783,7 @@ PrefabInstance:
     - target: {fileID: 1536626279474268163, guid: 197c94b4bfd66ed4eaa251689b8d2d32,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -8.900755
+      value: -8.9
       objectReference: {fileID: 0}
     - target: {fileID: 1536626279474268163, guid: 197c94b4bfd66ed4eaa251689b8d2d32,
         type: 3}
@@ -9853,6 +9852,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BossLoader
+      objectReference: {fileID: 0}
+    - target: {fileID: 8345840382044706192, guid: 197c94b4bfd66ed4eaa251689b8d2d32,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 7.9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
