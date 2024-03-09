@@ -87,6 +87,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float _drinkingAnimTime = 2f;
     [SerializeField] private float _hitStunTime = 1f;
     [SerializeField] private TwoBoneIKConstraint leftHand;
+    [SerializeField] private GameObject beerCan;
     private float _lockedTill;
 
     [SerializeField] private GameObject shop;
@@ -261,16 +262,18 @@ public class PlayerMovement : MonoBehaviour
         }
     }
     private void HaveADrink(InputAction.CallbackContext callbackContext){
-        //if(!drinking && drinksLeft > 0 && drinkingCd <= 0 && state != MovementState.dashing && state != MovementState.attacking){
-        //    leftHand.weight = 0;
-        //    drinksLeft--;
-        //    drinking = true;
-        //    drinkingCd = timeBetweenDrinks;
-        //    Invoke(nameof(ResetDrink), _drinkingAnimTime);
-        //}
+        if(!drinking && drinksLeft > 0 && drinkingCd <= 0 && state != MovementState.dashing && state != MovementState.attacking){
+            leftHand.weight = 0;
+            beerCan.SetActive(true);
+            drinksLeft--;
+            drinking = true;
+            drinkingCd = timeBetweenDrinks;
+            Invoke(nameof(ResetDrink), _drinkingAnimTime);
+        }
     }
     private void ResetDrink(){
         leftHand.weight = 1;
+        beerCan.SetActive(false);
         drinking = false;
         hp++;
     }

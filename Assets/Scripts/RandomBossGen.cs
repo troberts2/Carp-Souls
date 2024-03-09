@@ -8,6 +8,7 @@ public class RandomBossGen : MonoBehaviour
 {
     public GameObject[] bossList;
     public Transform bossSpawnPos;
+    private Vector3 ogBossSpawnPos;
     private BossSettings currentBoss;
     public BossSettings lastBoss;
     private float currentMultiplier = .8f;
@@ -15,7 +16,7 @@ public class RandomBossGen : MonoBehaviour
     void Start()
     {
         
-        
+        ogBossSpawnPos = bossSpawnPos.position;
     }
     void OnEnable(){
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -26,6 +27,7 @@ public class RandomBossGen : MonoBehaviour
     public void SpawnBossRandom(){
         if(SceneManager.GetActiveScene().name == "ArenaTest"||SceneManager.GetActiveScene().name == "BattleArenaCircle")
         {
+            bossSpawnPos.position = ogBossSpawnPos;
             if(bossList.Length > 0){
                 GameObject bossToSpawn = bossList[Random.Range(0, bossList.Length)];
                 while(bossToSpawn.GetComponent<BossBehavior>().bossSettings == lastBoss){
