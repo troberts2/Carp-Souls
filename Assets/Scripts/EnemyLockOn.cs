@@ -40,6 +40,7 @@ public class EnemyLockOn : MonoBehaviour
         anim = GetComponent<Animator>();
         cam = Camera.main.transform;
         lockOnCanvas.gameObject.SetActive(false);
+        Invoke(nameof(LockOnStart), .3f);
     }
     private void Awake() {
         playerInput = new DefaultInputActions();
@@ -67,6 +68,9 @@ public class EnemyLockOn : MonoBehaviour
             return;
         }
         
+        if (currentTarget = ScanNearBy()) FoundTarget(); else ResetTarget();
+    }
+    private void LockOnStart(){
         if (currentTarget = ScanNearBy()) FoundTarget(); else ResetTarget();
     }
     private void FixedUpdate() {
