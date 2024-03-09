@@ -8,6 +8,7 @@ public class HydroBullet : MonoBehaviour
     private GameObject player;
 
     [SerializeField] private float speed;
+    private float timeAlive = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,12 @@ public class HydroBullet : MonoBehaviour
     void Update()
     {
         transform.position -= (transform.right * Time.deltaTime * speed);
+        timeAlive += Time.deltaTime;
+        if (timeAlive > 10)
+        {
+            Destroy(transform.parent.gameObject);
+            Destroy(gameObject);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)

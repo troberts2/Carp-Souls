@@ -80,6 +80,15 @@ public partial class @DefaultInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""EnterShop"",
+                    ""type"": ""Button"",
+                    ""id"": ""62a28156-25c2-4059-bad0-728cedfa0760"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -377,6 +386,28 @@ public partial class @DefaultInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse;Gamepad"",
                     ""action"": ""Drink"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d9f7bf65-0959-4b19-a4d2-c6b388b5dc0c"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse;Gamepad"",
+                    ""action"": ""EnterShop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""92d4356e-5caa-4472-bd16-63cdbf6a18b1"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse;Gamepad"",
+                    ""action"": ""EnterShop"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1194,6 +1225,7 @@ public partial class @DefaultInputActions: IInputActionCollection2, IDisposable
         m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
         m_Player_LockToEnemy = m_Player.FindAction("LockToEnemy", throwIfNotFound: true);
         m_Player_Drink = m_Player.FindAction("Drink", throwIfNotFound: true);
+        m_Player_EnterShop = m_Player.FindAction("EnterShop", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1277,6 +1309,7 @@ public partial class @DefaultInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Dash;
     private readonly InputAction m_Player_LockToEnemy;
     private readonly InputAction m_Player_Drink;
+    private readonly InputAction m_Player_EnterShop;
     public struct PlayerActions
     {
         private @DefaultInputActions m_Wrapper;
@@ -1287,6 +1320,7 @@ public partial class @DefaultInputActions: IInputActionCollection2, IDisposable
         public InputAction @Dash => m_Wrapper.m_Player_Dash;
         public InputAction @LockToEnemy => m_Wrapper.m_Player_LockToEnemy;
         public InputAction @Drink => m_Wrapper.m_Player_Drink;
+        public InputAction @EnterShop => m_Wrapper.m_Player_EnterShop;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1314,6 +1348,9 @@ public partial class @DefaultInputActions: IInputActionCollection2, IDisposable
             @Drink.started += instance.OnDrink;
             @Drink.performed += instance.OnDrink;
             @Drink.canceled += instance.OnDrink;
+            @EnterShop.started += instance.OnEnterShop;
+            @EnterShop.performed += instance.OnEnterShop;
+            @EnterShop.canceled += instance.OnEnterShop;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1336,6 +1373,9 @@ public partial class @DefaultInputActions: IInputActionCollection2, IDisposable
             @Drink.started -= instance.OnDrink;
             @Drink.performed -= instance.OnDrink;
             @Drink.canceled -= instance.OnDrink;
+            @EnterShop.started -= instance.OnEnterShop;
+            @EnterShop.performed -= instance.OnEnterShop;
+            @EnterShop.canceled -= instance.OnEnterShop;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1578,6 +1618,7 @@ public partial class @DefaultInputActions: IInputActionCollection2, IDisposable
         void OnDash(InputAction.CallbackContext context);
         void OnLockToEnemy(InputAction.CallbackContext context);
         void OnDrink(InputAction.CallbackContext context);
+        void OnEnterShop(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

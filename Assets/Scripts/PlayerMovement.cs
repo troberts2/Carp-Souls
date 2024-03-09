@@ -10,7 +10,7 @@ using UnityEngine.Animations.Rigging;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
-    private float moveSpeed;
+    public float moveSpeed;
     public float walkSpeed;
 
     public float dashSpeed;
@@ -52,19 +52,20 @@ public class PlayerMovement : MonoBehaviour
         walking,
         dashing,
         attacking,
+        air,
+        menu,
         drinking,
-        stunned,
-        air
+        stunned
     }
 
     public bool dashing;
     public bool drinking;
-    [SerializeField] private int drinksLeft = 3;
+    public int drinksLeft = 3;
     internal float drinkingCd;
     [SerializeField] private float timeBetweenDrinks = 3f;
     public bool iFrames = false;
     public float maxHp = 3f;
-    private float hp;
+    public float hp;
     public Image playerHpBar;
     //Input Actions
     public DefaultInputActions playerInput;
@@ -89,6 +90,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject beerCan;
     private float _lockedTill;
 
+    [SerializeField] private GameObject shop;
 
     private void Start()
     {
@@ -130,7 +132,6 @@ public class PlayerMovement : MonoBehaviour
         if (animState == _currentState) return;
         animator.CrossFade(animState, .25f, 0);
         _currentState = animState;
-        
     }
 
     private void FixedUpdate()
@@ -188,7 +189,26 @@ public class PlayerMovement : MonoBehaviour
             desiredMoveSpeed = walkSpeed;
         }
 
-        if(!iFrames){
+        //Mode - Menu/Shop
+        if (shop != null)
+        {
+            if (shop.activeInHierarchy)
+            {
+                state = MovementState.menu;
+                desiredMoveSpeed = 0;
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.Confined;
+                //prevent player model turning
+                //freeze cinemachine camera
+            }
+            else
+            {
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
+            }
+        }
+
+        if (!iFrames){
             Physics.IgnoreLayerCollision (3, 9, false);
         }
         else{
