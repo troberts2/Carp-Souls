@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Salmon
   m_EditorClassIdentifier: 
   bossName: Salmon
-  bossMaxHp: 5
+  bossMaxHp: 45
   bossSpawnYOffset: 2
   secondsBetweenAttacks: 5
   bulletPatterns:
   - {fileID: 11400000, guid: d2276786c43caea4eb3a17645ea689bc, type: 2}
+  - {fileID: 11400000, guid: ace4f370e600d9146a7ee43c239a998a, type: 2}

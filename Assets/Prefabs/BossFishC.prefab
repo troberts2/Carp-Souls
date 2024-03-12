@@ -242,14 +242,16 @@ MonoBehaviour:
     type: 3}
   bubbleAttack: {fileID: 3035934030069154506, guid: 25846892ab2decf42abeffce8c85ad94,
     type: 3}
-  hydroAttack: {fileID: 4529801440234201960, guid: 17fdaf51457017148a6796c0f0e16bf9,
+  hydroAttack: {fileID: 778253049965248091, guid: 5cc8b55dcc735ab4f90c2f66ce7d8445,
     type: 3}
   player: {fileID: 0}
   jumpHeight: 5
   spinSpeed: 3
   spinTime: 180
   attackTimer: 5
-  spinTriggerDistance: 20
+  spinTriggerDistance: 1
+  doubleWave: 0
+  tripleWave: 1
 --- !u!114 &8773204104994817535
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -305,7 +307,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPattern1: {fileID: 11400000, guid: cb7fece701468ea4e8a11067283c6297, type: 2}
-  ProjectilePrefab: {fileID: 5278831797797300730, guid: 2b3dd38f78af87e409c4564a2acd21fd,
+  ProjectilePrefab: {fileID: 6068411118910198462, guid: d7a6c73cb170d404d8bf9caf4075cca2,
     type: 3}
   radial: 0
 --- !u!114 &6408013340760740511
@@ -320,7 +322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dcda8f959cd7b84fb5f99159140fc39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 5278831797797300730, guid: 2b3dd38f78af87e409c4564a2acd21fd,
+  bulletPrefab: {fileID: 6068411118910198462, guid: d7a6c73cb170d404d8bf9caf4075cca2,
     type: 3}
   pooledObjects: []
   countToPool: 100
@@ -740,7 +742,7 @@ Transform:
   m_GameObject: {fileID: 5888761429462829991}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.05, z: 0.496}
+  m_LocalPosition: {x: -0.076, y: 0.067, z: 0.403}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

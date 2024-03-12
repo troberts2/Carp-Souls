@@ -649,7 +649,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 158021727}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.09252107, y: -4.1074533e-10, z: 3.8165988e-11, w: 0.9957108}
+  m_LocalRotation: {x: 0.09252107, y: -0.000000007174313, z: 6.6663386e-10, w: 0.9957108}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1650,7 +1650,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 547427622}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.13870123, y: -0.000000014757133, z: 0.0000000020668085, w: 0.9903343}
+  m_LocalRotation: {x: 0.13870123, y: 0.0000000147571315, z: -0.0000000020668085,
+    w: 0.9903343}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7760,7 +7761,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1052000816}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0000016073056, y: 0.6091395, z: -0.79306316, w: 0.000002169986}
+  m_LocalRotation: {x: 0.0000016078245, y: 0.6091395, z: -0.79306316, w: 0.0000021706865}
   m_LocalPosition: {x: -0.1714822, y: 3.2777205, z: 1.5750024}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8640,7 +8641,7 @@ Transform:
   m_GameObject: {fileID: 1354606847}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 1, z: 22.52}
+  m_LocalPosition: {x: 0, y: 1, z: 29}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8957,6 +8958,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64714f90b5ce040469d14ee2fee3b192, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 0
   walkSpeed: 7
   dashSpeed: 20
   dashSpeedChangeFactor: 50
@@ -8978,12 +8980,15 @@ MonoBehaviour:
   timeBetweenDrinks: 3
   iFrames: 0
   maxHp: 3
+  hp: 0
   playerHpBar: {fileID: 1764575243}
   _dashAnimTime: 0.3
   _attackAnimTime: 0.2
   _drinkingAnimTime: 1
   _hitStunTime: 1
   leftHand: {fileID: 577606393}
+  beerCan: {fileID: 0}
+  shop: {fileID: 0}
 --- !u!1 &1371595181
 GameObject:
   m_ObjectHideFlags: 0
@@ -9306,7 +9311,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Walk up to the pond and cast your line with the A button
+  m_text: Walk up to the pond and cast your line with the X button
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -9856,7 +9861,7 @@ PrefabInstance:
     - target: {fileID: 8345840382044706192, guid: 197c94b4bfd66ed4eaa251689b8d2d32,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.9
+      value: 8.9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9995,7 +10000,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1697678961}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.13870123, y: -0.0000000147571315, z: 0.0000000020668085,
+  m_LocalRotation: {x: 0.13870123, y: 0.0000000147571315, z: -0.0000000020668085,
     w: 0.9903343}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}

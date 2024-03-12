@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8223d6d7a4d4bf84c9253abc63ec6b52, type: 3}
-  m_Name: FiveSingleShots
+  m_Name: PufferfishCoolAttack
   m_EditorClassIdentifier: 
-  numberOfProjectilesPerArray: 5
-  individualArraySpread: 1
-  numOfArrays: 1
-  totalArraySpread: 1
-  angleOffset: 1
-  projectileSpeed: 0.8
-  acceleration: 0.6
+  numberOfProjectilesPerArray: 3
+  individualArraySpread: 90
+  numOfArrays: 2
+  totalArraySpread: 180
+  angleOffset: 0
+  projectileSpeed: 10
+  acceleration: -0.1
   curve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0.103889465
-      value: 0.041641235
+      time: -0.004386902
+      value: 0.49334717
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -32,26 +32,17 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 0.5032216
-      value: 1.8992462
-      inSlope: 0.000022502567
-      outSlope: 0.000022502567
+      time: 0.4918942
+      value: 0.9608312
+      inSlope: 0.7564848
+      outSlope: 0.7564848
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.37948135
+      outWeight: 0.33333334
     - serializedVersion: 3
-      time: 1.07267
-      value: -1.5251138
-      inSlope: 0.22878459
-      outSlope: 0.22878459
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.4972543
-    - serializedVersion: 3
-      time: 1.3998871
-      value: -0.019565582
+      time: 1
+      value: 0.52181625
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -62,10 +53,10 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   useCurve: 0
-  attackRotateSpeed: 1
+  attackRotateSpeed: 30
   rotateSpeedChangeRate: 0
-  fireRate: 3
-  maxSpinSpeed: 0
-  repeatTime: 5
-  secondsPerAttack: 0.95
+  fireRate: 0.1
+  maxSpinSpeed: 30
+  repeatTime: 2
+  secondsPerAttack: 3
   attackBreakTime: 0.5

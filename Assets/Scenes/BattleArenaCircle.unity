@@ -7746,8 +7746,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1057327779}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.00011788769, y: 0.60913944, z: -0.79306316, w: 0.00015915738}
-  m_LocalPosition: {x: -0.17155081, y: 3.2777166, z: 1.5750005}
+  m_LocalRotation: {x: 0.00011600778, y: 0.60913956, z: -0.7930631, w: 0.00015661943}
+  m_LocalPosition: {x: -0.17154972, y: 3.2777166, z: 1.5750029}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -8966,6 +8966,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64714f90b5ce040469d14ee2fee3b192, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 0
   walkSpeed: 7
   dashSpeed: 20
   dashSpeedChangeFactor: 50
@@ -8986,13 +8987,16 @@ MonoBehaviour:
   drinksLeft: 3
   timeBetweenDrinks: 3
   iFrames: 0
-  maxHp: 3
+  maxHp: 10
+  hp: 0
   playerHpBar: {fileID: 200134696}
   _dashAnimTime: 0.3
   _attackAnimTime: 0.2
   _drinkingAnimTime: 1
   _hitStunTime: 1
   leftHand: {fileID: 601672255}
+  beerCan: {fileID: 919132149155446097, guid: 9324f917ccde02a4bbb83b7faef541c3, type: 3}
+  shop: {fileID: 0}
 --- !u!54 &1322299092
 Rigidbody:
   m_ObjectHideFlags: 0
