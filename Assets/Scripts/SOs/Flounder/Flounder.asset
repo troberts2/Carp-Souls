@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Flounder
   m_EditorClassIdentifier: 
   bossName: Flatfish
-  bossMaxHp: 15
-  bossSpawnYOffset: 0
+  bossMaxHp: 3
+  bossSpawnYOffset: 2
   secondsBetweenAttacks: 7
   bulletPatterns:
   - {fileID: 11400000, guid: 80bfefecb7916fd49b385b00d5344732, type: 2}

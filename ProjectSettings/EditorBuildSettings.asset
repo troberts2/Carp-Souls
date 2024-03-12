@@ -29,6 +29,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Loss Scene.unity
     guid: 83054b4a938dee24087d99db4a5a59a0
+  - enabled: 1
+    path: Assets/Scenes/BattleArenaCircle.unity
+    guid: 4fb0c2da18771004397b169588a0d2fb
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: aa7849851084b8641a7ef882d404b40b,
       type: 2}

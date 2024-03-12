@@ -25,6 +25,9 @@ public class BossAttacks : MonoBehaviour
     private int repeatCheck;
     private int repetitions;
 
+    public bool doubleWave;
+    public bool tripleWave;
+
     private Material bossMat;
     private Color bossCol;
 
@@ -43,8 +46,6 @@ public class BossAttacks : MonoBehaviour
 
         bossMat = GetComponent<MeshRenderer>().material;
         bossCol = bossMat.color;
-
-        StartCoroutine(ChooseAttack());
         repetitions = 0;
     }
 
@@ -74,6 +75,20 @@ public class BossAttacks : MonoBehaviour
         transform.position = startPos;
         Instantiate(waveAttack);
 
+        if (tripleWave)
+        {
+            yield return new WaitForSeconds(3);
+            Instantiate(waveAttack);
+            yield return new WaitForSeconds(3);
+            Instantiate(waveAttack);
+        }
+        else if (doubleWave)
+        {
+            yield return new WaitForSeconds(2);
+            Instantiate(waveAttack);
+        }
+
+
         bb.state = BossBehavior.BossState.following;
     }
 
@@ -92,11 +107,12 @@ public class BossAttacks : MonoBehaviour
             i++;
 
             Instantiate(hydroAttack);
-            hydroAttack.transform.position = transform.GetChild(1).position; //temporary use of Mouth child
-            transform.GetChild(1).DetachChildren();
+            hydroAttack.transform.position = transform.position; //temporary use of Mouth child
+ 
 
             yield return new WaitForSeconds(1);
         }
+        bb.state = BossBehavior.BossState.following;
     }
 
     IEnumerator Beam()
@@ -129,7 +145,7 @@ public class BossAttacks : MonoBehaviour
 
         while (t < spinTime)
         {
-            t++;
+            t += Time.deltaTime;
             transform.Rotate(spinSpeed * rotateDirection * Time.deltaTime);
             yield return null;
         }
@@ -152,8 +168,9 @@ public class BossAttacks : MonoBehaviour
         }
     }
 
-    IEnumerator ChooseAttack()
+    public void ChooseAttack()
     {
+        bb.state = BossBehavior.BossState.attacking;
         if (Vector3.Distance(transform.position, player.transform.position) < spinTriggerDistance)
         {
             //Debug.Log(Vector3.Distance(transform.position, player.transform.position));
@@ -202,8 +219,6 @@ public class BossAttacks : MonoBehaviour
             }
         }
 
-        yield return new WaitForSeconds(attackTimer);
 
-        StartCoroutine(ChooseAttack());
     }
 }

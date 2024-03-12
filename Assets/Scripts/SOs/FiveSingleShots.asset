@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8223d6d7a4d4bf84c9253abc63ec6b52, type: 3}
-  m_Name: Broken
+  m_Name: FiveSingleShots
   m_EditorClassIdentifier: 
   numberOfProjectilesPerArray: 5
-  individualArraySpread: 20
-  numOfArrays: 40
-  totalArraySpread: 20
+  individualArraySpread: 1
+  numOfArrays: 1
+  totalArraySpread: 1
+  angleOffset: 1
   projectileSpeed: 0.8
   acceleration: 0.6
   curve:
@@ -40,8 +41,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.37948135
     - serializedVersion: 3
-      time: 1.0024734
-      value: -1.8916769
+      time: 1.07267
+      value: -1.5251138
       inSlope: 0.22878459
       outSlope: 0.22878459
       tangentMode: 0
@@ -60,11 +61,11 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  useCurve: 1
-  attackRotateSpeed: 0.29
-  rotateSpeedChangeRate: 1.65
-  fireRate: 3.22
-  maxSpinSpeed: 3.26
+  useCurve: 0
+  attackRotateSpeed: 1
+  rotateSpeedChangeRate: 0
+  fireRate: 3
+  maxSpinSpeed: 0
   repeatTime: 5
   secondsPerAttack: 0.95
   attackBreakTime: 0.5
