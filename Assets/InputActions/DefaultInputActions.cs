@@ -89,6 +89,15 @@ public partial class @DefaultInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""285eb626-4051-4e6c-af87-90a2cff73ce1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -408,6 +417,28 @@ public partial class @DefaultInputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse;Gamepad"",
                     ""action"": ""EnterShop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c8651644-66e0-4a9b-b0cd-2a72e68bc807"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""01d3df66-d9e6-4f23-8629-3618ab8bb6b8"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1226,6 +1257,7 @@ public partial class @DefaultInputActions: IInputActionCollection2, IDisposable
         m_Player_LockToEnemy = m_Player.FindAction("LockToEnemy", throwIfNotFound: true);
         m_Player_Drink = m_Player.FindAction("Drink", throwIfNotFound: true);
         m_Player_EnterShop = m_Player.FindAction("EnterShop", throwIfNotFound: true);
+        m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1310,6 +1342,7 @@ public partial class @DefaultInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_LockToEnemy;
     private readonly InputAction m_Player_Drink;
     private readonly InputAction m_Player_EnterShop;
+    private readonly InputAction m_Player_Pause;
     public struct PlayerActions
     {
         private @DefaultInputActions m_Wrapper;
@@ -1321,6 +1354,7 @@ public partial class @DefaultInputActions: IInputActionCollection2, IDisposable
         public InputAction @LockToEnemy => m_Wrapper.m_Player_LockToEnemy;
         public InputAction @Drink => m_Wrapper.m_Player_Drink;
         public InputAction @EnterShop => m_Wrapper.m_Player_EnterShop;
+        public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1351,6 +1385,9 @@ public partial class @DefaultInputActions: IInputActionCollection2, IDisposable
             @EnterShop.started += instance.OnEnterShop;
             @EnterShop.performed += instance.OnEnterShop;
             @EnterShop.canceled += instance.OnEnterShop;
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -1376,6 +1413,9 @@ public partial class @DefaultInputActions: IInputActionCollection2, IDisposable
             @EnterShop.started -= instance.OnEnterShop;
             @EnterShop.performed -= instance.OnEnterShop;
             @EnterShop.canceled -= instance.OnEnterShop;
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -1619,6 +1659,7 @@ public partial class @DefaultInputActions: IInputActionCollection2, IDisposable
         void OnLockToEnemy(InputAction.CallbackContext context);
         void OnDrink(InputAction.CallbackContext context);
         void OnEnterShop(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {
