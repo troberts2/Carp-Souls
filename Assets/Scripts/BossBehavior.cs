@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class BossBehavior : MonoBehaviour
 {
+    public GameObject model;
     private bool fightStarting = true;
     internal float hp;
     public float maxHp = 15;
@@ -61,7 +62,16 @@ public class BossBehavior : MonoBehaviour
             }else   attackCdTimer = secondsBetweenAttacks;
 
         }
-        
+
+        if (state == BossState.attacking)
+        {
+            model.GetComponent<Animator>().SetBool("BubbleAttack", true);
+        }
+        else
+        {
+            model.GetComponent<Animator>().SetBool("BubbleAttack", false);
+        }
+
     }
 
     void FollowPlayerOrientation(){
